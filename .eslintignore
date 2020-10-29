@@ -1,7 +1,0 @@
-node_modules
-.rpt2_cache
-.vscode
-.idea
-config
-dist
-*.spec.ts
