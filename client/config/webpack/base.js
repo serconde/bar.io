@@ -28,6 +28,14 @@ module.exports = merge(
           exclude: /node_modules/,
           loader: 'babel-loader',
         },
+        {
+          test: /\.(svg|eot|ttf|woff|woff2)$/i,
+          loader: 'url-loader',
+          options: {
+            limit: 8192,
+            // esModule: false,
+          },
+        },
       ],
     },
     optimization: {

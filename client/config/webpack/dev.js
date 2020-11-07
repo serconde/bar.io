@@ -42,7 +42,7 @@ module.exports = mergeWithCustomize({
   module: {
     rules: [
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpe?g|gif)$/,
         loader: 'file-loader',
         options: {
           name: 'img/[name].[ext]',
