@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const helpers = require('./helpers');
 
 module.exports = merge(
@@ -31,6 +31,9 @@ module.exports = merge(
       ],
     },
     optimization: {
+      minimize: true,
+      emitOnErrors: true,
+      moduleIds: 'named',
       runtimeChunk: 'single',
       splitChunks: {
         cacheGroups: {
@@ -39,6 +42,12 @@ module.exports = merge(
             name: 'vendor',
             test: /[\\/]node_modules[\\/]/,
             enforce: true,
+            maxSize: 200000,
+          },
+          commons: {
+            name: 'commons',
+            chunks: 'initial',
+            minChunks: 2,
           },
         },
       },
@@ -48,6 +57,7 @@ module.exports = merge(
         favicon: 'assets/favicon.ico',
         filename: 'index.html',
         template: 'index.html',
+        hash: true,
       }),
     ],
   },

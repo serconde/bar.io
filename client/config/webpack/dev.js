@@ -1,12 +1,15 @@
-const merge = require('webpack-merge');
+const { mergeWithCustomize, customizeArray } = require('webpack-merge');
 const Dotenv = require('dotenv-webpack');
 const base = require('./base');
 const helpers = require('./helpers');
+const merge = require('lodash.merge');
 
 const hotReloadingEntries = ['react-hot-loader/patch'];
 
-module.exports = merge.strategy({
-  entry: 'prepend',
+module.exports = mergeWithCustomize({
+  customizeArray: customizeArray({
+    'entry.*': 'prepend',
+  }),
 })(base, {
   mode: 'development',
   devtool: 'inline-source-map',
@@ -28,6 +31,8 @@ module.exports = merge.strategy({
     port: 8080,
     stats: 'minimal',
     hot: true,
+    compress: true,
+    contentBase: helpers.resolveFromRootPath('dist'),
   },
   plugins: [
     new Dotenv({
