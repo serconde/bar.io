@@ -12,10 +12,11 @@
   - [Testing](#testing)
   - [Paquetizado](#paquetizado)
   - [Servidor de desarrollo](#servidor-de-desarrollo)
-  - [Construir documentación con react-styleguidist](#construir-documentación-con-react-styleguidist)
+  - [Documentación con react-styleguidist](#documentación-con-react-styleguidist)
   - [Verificación de código con Prettier](#verificación-de-código-con-prettier)
   - [Lintado de código con Eslint](#lintado-de-código-con-eslint)
   - [Versionado package.json](#versionado-packagejson)
+  - [Commit](#commit)
   - [Webpack](#webpack)
     - [Análisis de Archivos](#análisis-de-archivos)
     - [Scripts](#scripts)
@@ -476,9 +477,10 @@ arreglarse de manera manual
 
 ## Commit
 
-Se ha instalado una herramienta para gestionar los commits (`commitizen`) y un linter de commits (`commitlint`), con en fin de que cuando se genere
-una release, pueda obtener toda la información de los commits, y generar un fichero de `CHANGELOG.md`, por lo que se
-ha generado un script del `package.json` para que arranque dicha herramienta. Previamente al `commit` se ejecuta un
+Se ha instalado una herramienta para gestionar los commits (`commitizen`) y un linter de commits
+(`commitlint`), con en fin de que cuando se genere una release, pueda obtener toda la información de
+los commits, y generar un fichero de `CHANGELOG.md`, por lo que se ha generado un script del
+`package.json` para que arranque dicha herramienta. Previamente al `commit` se ejecuta un
 `precommit` que pasa unas reglas de estilo y lintado al código (`code styling and code linter`).
 
 Para poder ejecutar dicho comando, se puede ejecutar de dos formas:
@@ -495,11 +497,17 @@ o, otra forma, es mediante `git`:
 $ git cz
 ```
 
-En ambos casos se ejecutan el precommit, y es necesario para la correcta generación del archivo `CHANGELOG.md`.
+En ambos casos se ejecutan el precommit, y es necesario para la correcta generación del archivo
+`CHANGELOG.md`.
 
 ## Webpack
 
-La construcción de proyecto se realiza mediante webpack 4.
+La construcción de proyecto se realiza mediante webpack 5. Los cambios sobre todo son en la librería
+`webpack-cli` y el uso de `@webpack-cli/server`, que envuelve el paquete `webpack-dev-server` y hace
+uso de él para levantar el servidor.
+
+La forma de configurar el paquete `webpack-merge` también cambia, y se ha hecho una nueva
+configuración para que pueda cargar previamente la librería `react-hot-loader/patch`
 
 Tenemos un archivo individual para cada entorno de desarrollo (`development` y `production`), uno
 para analizado de bundle (`analyze`), uno de `helpers` y un `base` para todos
@@ -547,11 +555,13 @@ Para cambiar el puerto en el que se despliega el servidor local, se tiene que mo
 
 ```javascript
     devServer: {
-        inline: true,
-        host: 'localhost',
-        port: 8080,  // <------ Change this number
-        stats: 'minimal',
-        hot: true,
+      inline: true,
+      host: 'localhost',
+      port: 8080,  // <------ Change this number
+      stats: 'minimal',
+      hot: true,
+      compress: true,
+      contentBase: helpers.resolveFromRootPath('dist'),
     },
 ```
 
