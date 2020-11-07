@@ -27,7 +27,7 @@
     "release": "standard-version",
     "server": "http-server dist",
     "start": "npm run build",
-    "start:dev": "webpack-dev-server --config ./config/webpack/dev.js",
+    "start:dev": "webpack serve --config ./config/webpack/dev.js --progress --color",
     "start:e2e": "cypress open",
     "test": "jest -c ./config/test/jest.js --verbose",
     "test:e2e": "npm run dev -- start:e2e",
@@ -87,6 +87,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@typescript-eslint/eslint-plugin": "^2.9.0",
     "@typescript-eslint/parser": "^2.9.0",
+    "@webpack-cli/serve": "^1.1.0",
     "babel-loader": "^8.0.6",
     "babel-plugin-emotion": "^10.0.23",
     "css-loader": "^3.2.0",
@@ -120,7 +121,7 @@
     "url-loader": "^3.0.0",
     "webpack": "^5.4.0",
     "webpack-bundle-analyzer": "^3.6.0",
-    "webpack-cli": "^3.3.12",
+    "webpack-cli": "^4.2.0",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.3.0"
   }
