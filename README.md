@@ -1,1 +1,3 @@
-# bar.io
+# Bar.io
+
+Read `./client/README.md`
