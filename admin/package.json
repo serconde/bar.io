@@ -1,7 +1,7 @@
 {
-  "name": "bar.io",
+  "name": "bar.io_admin",
   "version": "0.1.0",
-  "description": "",
+  "description": "bar.io - admin site",
   "homepage": "",
   "repository": {
     "type": "git"
@@ -27,7 +27,7 @@
     "release": "standard-version",
     "server": "http-server dist",
     "start": "npm run build",
-    "start:dev": "webpack serve --config ./config/webpack/dev.js --progress --color",
+    "start:dev": "webpack serve --config ./config/webpack/dev.js --progress --color --port 8081",
     "start:e2e": "cypress open",
     "test": "jest -c ./config/test/jest.js --verbose",
     "test:e2e": "npm run dev -- start:e2e",
