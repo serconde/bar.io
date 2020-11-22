@@ -2,21 +2,21 @@ import React from 'react';
 import * as classes from './header.styles';
 
 interface HeaderProps {
-  restaurantName: string;
-  restaurantDescription?: string;
-  restaurantTelephone?: string;
+  name: string;
+  description?: string;
+  telephone?: string;
 }
 
-export const Header: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => {
-  const { restaurantName, restaurantDescription, restaurantTelephone } = props;
+export const HeaderComponent: React.FunctionComponent<HeaderProps> = (props: HeaderProps) => {
+  const { name, description, telephone } = props;
   return (
     <div className={classes.header}>
-      <h1 className={classes.title}>{restaurantName}</h1>
-      {!!restaurantDescription && <h2>{restaurantDescription}</h2>}
-      {!!restaurantTelephone && (
+      <h1 className={classes.title}>{name}</h1>
+      {!!description && <h2 role='heading'>{description}</h2>}
+      {!!telephone && (
         <p>
-          Teléfono de reservas:
-          <span aria-label={restaurantTelephone.split('').join('.')}>{restaurantTelephone}</span>
+          Teléfono de reservas:&nbsp;
+          <span aria-label={telephone.split('').join('.')}>{telephone}</span>
         </p>
       )}
     </div>
