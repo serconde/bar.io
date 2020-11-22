@@ -15,6 +15,16 @@ export interface MenuCategory {
 }
 
 export interface Dish {
+  id: number;
   name: string;
-  price: number;
+  price: string;
 }
+
+export const createEmptyMenu = (): Menu => ({
+  restaurantInfo: createEmptyRestaurantInfo(),
+  categories: [],
+});
+
+export const createEmptyRestaurantInfo = (): RestaurantInfo => ({
+  name: '',
+});

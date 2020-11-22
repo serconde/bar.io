@@ -15,6 +15,7 @@ export interface MenuCategory {
 }
 
 export interface Dish {
+  id: number;
   name: string;
   price: number;
 }
