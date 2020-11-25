@@ -1,0 +1,25 @@
+name: Continuos Integration workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  ci-public:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: public
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Tests
+        run: npm test
