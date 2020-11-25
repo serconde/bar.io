@@ -9,12 +9,13 @@ import {
 import React from 'react';
 import { MenuCategory } from '../menu.vm';
 import * as classes from './menu-list.styles';
+import { SubmenuCategoryComponent } from './submenu-category.component';
 
 interface MenuListProps {
   categories: Array<MenuCategory>;
 }
 
-export const MenuList: React.FunctionComponent<MenuListProps> = (props) => {
+export const MenuListComponent: React.FunctionComponent<MenuListProps> = (props) => {
   const { categories } = props;
   const [expanded, setExpanded] = React.useState<string | false>('category0');
 
@@ -37,18 +38,7 @@ export const MenuList: React.FunctionComponent<MenuListProps> = (props) => {
               <Typography>{category.name}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <List component='div' className={classes.category}>
-                {!!category.dishes &&
-                  category.dishes.map((dish) => (
-                    <ListItem
-                      key={`dish-${dish.id}`}
-                      aria-label={`${dish.name} ${dish.price}`}
-                      button>
-                      <div className={classes.name}>{dish.name}</div>
-                      <div className={classes.price}>{dish.price}</div>
-                    </ListItem>
-                  ))}
-              </List>
+              <SubmenuCategoryComponent dishes={category.dishes} />
             </AccordionDetails>
           </Accordion>
         ))}

@@ -2,14 +2,19 @@ import { formatToEuros } from 'common';
 import * as apiModel from './api/menu.api.model';
 import * as viewModel from './menu.vm';
 
-export const mapMenuApiModelToViewModel = (menu: apiModel.Menu): viewModel.Menu => ({
-  restaurantInfo: mapRestaurantInfoApiModelToViewModel(menu.restaurantInfo),
-  categories: !!menu.categories ? mapMenuCategoryApiModelsToViewModels(menu.categories) : [],
-});
+export const mapMenuApiModelToViewModel = (menu: apiModel.Menu): viewModel.Menu => {
+  if (!!menu)
+    return {
+      restaurantInfo: mapRestaurantInfoApiModelToViewModel(menu.restaurantInfo),
+      categories: !!menu.categories ? mapMenuCategoryApiModelsToViewModels(menu.categories) : [],
+    };
+  else return viewModel.createEmptyMenu();
+};
 
 export const mapRestaurantInfoApiModelToViewModel = (
   restaurantInfo: apiModel.RestaurantInfo,
-): viewModel.RestaurantInfo => ({ ...restaurantInfo });
+): viewModel.RestaurantInfo =>
+  restaurantInfo ? { ...restaurantInfo } : viewModel.createEmptyRestaurantInfo();
 
 export const mapMenuCategoryApiModelsToViewModels = (
   menuCategories: Array<apiModel.MenuCategory>,

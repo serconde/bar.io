@@ -1,5 +1,6 @@
 import { formatToEuros } from 'common';
 import { mapMenuApiModelToViewModel } from './menu.mapper';
+import { createEmptyMenu } from './menu.vm';
 
 describe('Menu mapper tests', () => {
   it('should return a valid view model when passing a complete api model', () => {
@@ -112,6 +113,31 @@ describe('Menu mapper tests', () => {
       },
       categories: [],
     };
+
+    // Act
+    const menuViewModel = mapMenuApiModelToViewModel(menuApiModel);
+
+    // Assert
+    expect(menuViewModel).toEqual(expectedMenuViewModel);
+  });
+  it('should an empty view model when passing an undefined api model', () => {
+    // Arrange
+    const menuApiModel = undefined;
+
+    const expectedMenuViewModel = createEmptyMenu();
+
+    // Act
+    const menuViewModel = mapMenuApiModelToViewModel(menuApiModel);
+
+    // Assert
+    expect(menuViewModel).toEqual(expectedMenuViewModel);
+  });
+
+  it('should an empty view model when passing an null api model', () => {
+    // Arrange
+    const menuApiModel = null;
+
+    const expectedMenuViewModel = createEmptyMenu();
 
     // Act
     const menuViewModel = mapMenuApiModelToViewModel(menuApiModel);

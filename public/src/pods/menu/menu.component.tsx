@@ -1,6 +1,6 @@
 import React from 'react';
 import { MenuCategory, RestaurantInfo } from './menu.vm';
-import { HeaderComponent, MenuList } from './components';
+import { HeaderComponent, MenuListComponent } from './components';
 
 interface MenuComponentProps {
   restaurantInfo: RestaurantInfo;
@@ -12,7 +12,7 @@ export const MenuComponent: React.FunctionComponent<MenuComponentProps> = (props
   return (
     <div>
       <HeaderComponent {...restaurantInfo} />
-      <MenuList categories={categories} />
+      <MenuListComponent categories={categories} />
     </div>
   );
 };

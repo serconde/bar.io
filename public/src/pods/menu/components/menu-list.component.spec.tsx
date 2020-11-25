@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { MenuList } from '.';
+import { MenuListComponent } from '.';
 import { formatToEuros } from 'common';
 
 describe('MenuListComponentTest', () => {
@@ -87,7 +87,7 @@ describe('MenuListComponentTest', () => {
     };
 
     // Act
-    render(<MenuList {...props} />);
+    render(<MenuListComponent {...props} />);
     const categories = props.categories
       .map((c) => c.name)
       .map((name) => screen.getByLabelText(name));
@@ -107,7 +107,7 @@ describe('MenuListComponentTest', () => {
     };
 
     // Act
-    const { container } = render(<MenuList {...props} />);
+    const { container } = render(<MenuListComponent {...props} />);
     // Assert
 
     expect(container.innerHTML).toBe('<div></div>');
@@ -120,7 +120,7 @@ describe('MenuListComponentTest', () => {
     };
 
     // Act
-    const { container } = render(<MenuList {...props} />);
+    const { container } = render(<MenuListComponent {...props} />);
     // Assert
 
     expect(container.innerHTML).toBe('<div></div>');
@@ -133,7 +133,7 @@ describe('MenuListComponentTest', () => {
     };
 
     // Act
-    const { container } = render(<MenuList {...props} />);
+    const { container } = render(<MenuListComponent {...props} />);
     // Assert
 
     expect(container.innerHTML).toBe('<div></div>');
