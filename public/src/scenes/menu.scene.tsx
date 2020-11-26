@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 
 import { CenteredLayout } from 'layouts';
-import { InitContainer } from 'pods/init';
+import { MenuContainer } from 'pods/menu';
 
-export const InitScene: FC = () => {
+export const MenuScene: FC = () => {
   return (
     <>
       <CenteredLayout>
-        <InitContainer />
+        <MenuContainer menuId={process.env.MENU_ID} />
       </CenteredLayout>
     </>
   );
