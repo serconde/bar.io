@@ -1,13 +1,11 @@
 import React, { FC } from 'react';
-
 import { CenteredLayout } from 'layouts';
-import { InitContainer } from 'pods/init';
 
-export const InitScene: FC = () => {
+export const EditProductScene: FC = () => {
   return (
     <>
       <CenteredLayout>
-        <InitContainer />
+        <h1>Edit Product</h1>
       </CenteredLayout>
     </>
   );
