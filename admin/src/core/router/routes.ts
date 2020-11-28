@@ -27,7 +27,7 @@ interface Routes extends Omit<SwitchRoutes, 'editCategory' | 'editProduct'> {
   editProduct: (id: string) => string;
 }
 
-export const Routes: Routes = {
+export const routes: Routes = {
   ...switchRoutes,
   editCategory: (id) => generatePath(switchRoutes.editCategory, { id }),
   editProduct: (id) => generatePath(switchRoutes.editProduct, { id }),
