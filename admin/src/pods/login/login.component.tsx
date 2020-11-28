@@ -16,6 +16,9 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 
+//CSS
+import * as classes from './login.styles';
+
 interface Props {
   onLogin: (login: Login) => void;
 }
@@ -24,8 +27,8 @@ export const LoginComponent: React.FunctionComponent<Props> = (props) => {
   const { onLogin } = props;
 
   return (
-    <Card>
-      <CardHeader title='Login' />
+    <Card className={classes.card}>
+      <CardHeader title='Login' className={classes.title} />
       <CardContent>
         <Formik
           onSubmit={onLogin}
@@ -33,12 +36,7 @@ export const LoginComponent: React.FunctionComponent<Props> = (props) => {
           validate={formValidation.validateForm}>
           {() => (
             <Form>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                }}>
+              <div className={classes.formLogin}>
                 <TextFieldComponent name='user' label='Name' />
                 <TextFieldComponent name='password' label='Password' type='password' />
                 <Button type='submit' variant='contained' color='primary'>
