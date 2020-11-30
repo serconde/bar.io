@@ -37,8 +37,8 @@ export const LoginComponent: React.FunctionComponent<Props> = (props) => {
           {() => (
             <Form>
               <div className={classes.formLogin}>
-                <TextFieldComponent name='user' label='Name' />
-                <TextFieldComponent name='password' label='Password' type='password' />
+                <TextFieldComponent name='email' label='EMail' />
+                <TextFieldComponent name='password' label='Clave' type='password' />
                 <Button type='submit' variant='contained' color='primary'>
                   Login
                 </Button>

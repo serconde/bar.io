@@ -27,8 +27,8 @@ export const LoginContainer: React.FunctionComponent = () => {
   };
 
   const handleLogin = (login: Login) => {
-    isValidLogin(login.user, login.password).then((result) => {
-      loginSucceeded(login.user, result);
+    isValidLogin(login.email, login.password).then((result) => {
+      loginSucceeded(login.email, result);
     });
   };
 

@@ -1,8 +1,8 @@
 //Mock api
-export const isValidLogin = (user: string, password: string): Promise<boolean> =>
+export const isValidLogin = (email: string, password: string): Promise<boolean> =>
   new Promise((resolve) => {
     setTimeout(() => {
       // mock call
-      resolve(user === 'admin' && password === 'test');
+      resolve(email === 'admin@prueba.com' && password === 'test');
     }, 500);
   });

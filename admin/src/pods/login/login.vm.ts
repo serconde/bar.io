@@ -1,9 +1,9 @@
 export interface Login {
-  user: string;
+  email: string;
   password: string;
 }
 
 export const createEmptyLogin = (): Login => ({
-  user: '',
+  email: '',
   password: '',
 });
