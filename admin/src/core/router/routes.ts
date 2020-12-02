@@ -7,7 +7,6 @@ interface SwitchRoutes {
   barInfo: string;
   categoriesList: string;
   productList: string;
-  editCategory: string;
   editProduct: string;
 }
 
@@ -18,17 +17,14 @@ export const switchRoutes: SwitchRoutes = {
   barInfo: '/barInfo',
   categoriesList: '/categories',
   productList: '/products',
-  editCategory: '/category/:id',
   editProduct: '/product/:id',
 };
 
-interface Routes extends Omit<SwitchRoutes, 'editCategory' | 'editProduct'> {
-  editCategory: (id: string) => string;
+interface Routes extends Omit<SwitchRoutes, 'editProduct'> {
   editProduct: (id: string) => string;
 }
 
 export const routes: Routes = {
   ...switchRoutes,
-  editCategory: (id) => generatePath(switchRoutes.editCategory, { id }),
   editProduct: (id) => generatePath(switchRoutes.editProduct, { id }),
 };

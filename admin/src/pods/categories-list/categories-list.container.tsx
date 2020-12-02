@@ -4,21 +4,16 @@ import { CategoriesListComponent } from './categories-list.component';
 import { mapCategoriesListApiModelToViewModel } from './categories-list.mapper';
 import { MenuCategory } from './menu-category.vm';
 
-interface CategoriesListComponentProps {
-  categories: Array<MenuCategory>;
-}
-
-export const CategoriesListContainer: React.FunctionComponent<CategoriesListComponentProps> = (
-  props,
-) => {
+export const CategoriesListContainer: React.FunctionComponent = () => {
   const [categories, setCategories] = React.useState<Array<MenuCategory>>([]);
+  const [editCategoryId, setEditCategoryId] = React.useState<number | false>(false);
 
   const getCategories = async () => {
     const menuCategories = await getMenuCategories();
     setCategories(mapCategoriesListApiModelToViewModel(menuCategories));
   };
 
-  React.useEffect( () => {
+  React.useEffect(() => {
     async function loadCategories() {
       await getCategories();
     }
@@ -32,15 +27,37 @@ export const CategoriesListContainer: React.FunctionComponent<CategoriesListComp
     setCategories(result);
   };
 
-  const onEdit = (id: number) => console.log(`Edit ${id}`);
-  const onDelete = (id: number) => console.log(`Delete ${id}`);
+  const onSave = (id: number, name: string) => {
+    if (id !== 0) {
+      setCategories(categories.map((c) => (c.id === id ? { ...c, name: name } : c)));
+    } else {
+      const newId =
+        categories
+          .map((c) => c.id)
+          .reduce((max, current) => (!!!max || current > max ? current : max)) + 1;
+      categories.unshift({
+        id: newId,
+        name: name,
+      });
+    }
+    setEditCategoryId(false);
+  };
+
+  const onEdit = (id: number) => setEditCategoryId(id);
+  const onDelete = (id: number) => setCategories(categories.filter((c) => c.id !== id));
+  const onCancel = () => setEditCategoryId(false);
+  const onAdd = () => setEditCategoryId(0);
 
   return (
     <CategoriesListComponent
       categories={categories}
+      editCategoryId={editCategoryId}
+      onSave={onSave}
       onEdit={onEdit}
       onDelete={onDelete}
       onReorder={reorder}
+      onCancel={onCancel}
+      onAdd={onAdd}
     />
   );
 };
