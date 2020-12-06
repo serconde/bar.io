@@ -5,7 +5,6 @@ import {
   BarInfoScene,
   CategoriesListScene,
   DashboardScene,
-  EditCategoryScene,
   EditProductScene,
   LoginScene,
   ProductListScene,
@@ -19,7 +18,6 @@ export const RouterComponent: React.FunctionComponent = () => {
         <Route exact={true} path={switchRoutes.dashboard} component={DashboardScene} />
         <Route exact={true} path={switchRoutes.barInfo} component={BarInfoScene} />
         <Route exact={true} path={switchRoutes.categoriesList} component={CategoriesListScene} />
-        <Route exact={true} path={switchRoutes.editCategory} component={EditCategoryScene} />
         <Route exact={true} path={switchRoutes.productList} component={ProductListScene} />
         <Route exact={true} path={switchRoutes.editProduct} component={EditProductScene} />
       </Switch>

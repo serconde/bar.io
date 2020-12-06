@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import { CategoriesListComponent } from './categories-list.component';
 
 describe('CategoriesListComponent test', () => {
-  it('should show a list of category cards when passed a valid list', () => {
+  it('should show the add button and a list of category cards when passed a valid list', () => {
     // Arrange
     const props = {
       categories: [
@@ -13,65 +13,137 @@ describe('CategoriesListComponent test', () => {
         { id: 4, name: 'Postres' },
         { id: 5, name: 'Bebidas' },
       ],
-      onEdit: (id: number) => console.log(`Edit ${id}`),
-      onDelete: (id: number) => console.log(`Edit ${id}`),
-      onReorder: (startIndex: number, endIndex: number) => console.log('Reordering...'),
+      editCategoryId: false,
+      onAdd: () => {
+        return;
+      },
+      onCancel: () => {
+        return;
+      },
+      onEdit: (id: number) => {
+        return;
+      },
+      onDelete: (id: number) => {
+        return;
+      },
+      onSave: (id: number, name: string) => {
+        return;
+      },
+      onReorder: (startIndex: number, endIndex: number) => {
+        return;
+      },
     };
 
     // Act
     render(<CategoriesListComponent {...props} />);
+    const addButton = screen.getByLabelText('Añadir categoría');
     let cardAmount = 0;
     props.categories.map((c) => (cardAmount += screen.queryAllByText(c.name).length));
 
     // Assert
+    expect(addButton).toBeInTheDocument();
     expect(cardAmount).toBe(props.categories.length);
   });
-  it('should not show anything when passing an undefined categories list', () => {
+  it('should show the add button and a disclaimer message when passing an undefined categories list', () => {
     // Arrange
     const props = {
       categories: undefined,
-      onEdit: (id: number) => console.log(`Edit ${id}`),
-      onDelete: (id: number) => console.log(`Edit ${id}`),
-      onReorder: (startIndex: number, endIndex: number) => console.log('Reordering...'),
+      editCategoryId: false,
+      onAdd: () => {
+        return;
+      },
+      onCancel: () => {
+        return;
+      },
+      onEdit: (id: number) => {
+        return;
+      },
+      onDelete: (id: number) => {
+        return;
+      },
+      onSave: (id: number, name: string) => {
+        return;
+      },
+      onReorder: (startIndex: number, endIndex: number) => {
+        return;
+      },
     };
 
     // Act
     render(<CategoriesListComponent {...props} />);
+    const disclaimer = screen.getByText('No existen categorías');
     const buttonAmount = screen.queryAllByRole('button').length;
 
     // Assert
-    expect(buttonAmount).toBe(0);
+    expect(disclaimer).toBeInTheDocument();
+    expect(buttonAmount).toBe(1);
   });
-  it('should not show anything when passing a null categories list', () => {
+  it('should show "No existen categorías" when passing a null categories list', () => {
     // Arrange
     const props = {
-      categories: null,
-      onEdit: (id: number) => console.log(`Edit ${id}`),
-      onDelete: (id: number) => console.log(`Edit ${id}`),
-      onReorder: (startIndex: number, endIndex: number) => console.log('Reordering...'),
+      categories: undefined,
+      editCategoryId: false,
+      onAdd: () => {
+        return;
+      },
+      onCancel: () => {
+        return;
+      },
+      onEdit: (id: number) => {
+        return;
+      },
+      onDelete: (id: number) => {
+        return;
+      },
+      onSave: (id: number, name: string) => {
+        return;
+      },
+      onReorder: (startIndex: number, endIndex: number) => {
+        return;
+      },
     };
 
     // Act
     render(<CategoriesListComponent {...props} />);
-    const buttonAmount = screen.queryAllByRole('button').length;
+    const disclaimer = screen.getByText('No existen categorías');
+    const addButton = screen.getByLabelText('Añadir categoría');
 
     // Assert
-    expect(buttonAmount).toBe(0);
+    expect(disclaimer).toBeInTheDocument();
+    expect(addButton).toBeInTheDocument();
   });
-  it('should not show anything when passing an empty categories list', () => {
+  it('should show the add button and a disclaimer when passing a null categories list', () => {
     // Arrange
     const props = {
-      categories: [],
-      onEdit: (id: number) => console.log(`Edit ${id}`),
-      onDelete: (id: number) => console.log(`Edit ${id}`),
-      onReorder: (startIndex: number, endIndex: number) => console.log('Reordering...'),
+      categories: undefined,
+      editCategoryId: false,
+      onAdd: () => {
+        return;
+      },
+      onCancel: () => {
+        return;
+      },
+      onEdit: (id: number) => {
+        return;
+      },
+      onDelete: (id: number) => {
+        return;
+      },
+      onSave: (id: number, name: string) => {
+        return;
+      },
+      onReorder: (startIndex: number, endIndex: number) => {
+        return;
+      },
     };
 
     // Act
     render(<CategoriesListComponent {...props} />);
-    const buttonAmount = screen.queryAllByRole('button').length;
+    const disclaimer = screen.getByText('No existen categorías');
+    const addButton = screen.getByLabelText('Añadir categoría');
 
     // Assert
-    expect(buttonAmount).toBe(0);
+    expect(disclaimer).toBeInTheDocument();
+    expect(addButton).toBeInTheDocument();
   });
 });
