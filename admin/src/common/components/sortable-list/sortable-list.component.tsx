@@ -1,33 +1,37 @@
 import { List, ListItem, RootRef, Typography } from '@material-ui/core';
 import React from 'react';
-import { AddCategoryComponent, CategoryCardComponent } from './components';
-import { MenuCategory } from './menu-category.vm';
+import { AddItemComponent, ItemCardComponent } from './components';
+import { ListItem as Item } from './list-item.vm';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import * as classes from './categories-list.styles';
+import * as classes from './sortable-list.styles';
 
-interface CategoriesListComponentProps {
-  categories: Array<MenuCategory>;
-  editCategoryId: number | boolean;
+interface SortableListComponentProps {
+  items: Array<Item>;
+  itemTypeName?: string;
+  editItemId: number | boolean;
   onDelete: (id: number) => void;
   onEdit: (id: number) => void;
-  onSave: (id: number, name: string) => void;
+  onSave: (id: number, value: string) => void;
   onAdd: () => void;
   onCancel: () => void;
+  onChangeVisibility?: (id: number) => void;
   onReorder: (startIndex: number, endIndex: number) => void;
 }
 
-export const CategoriesListComponent: React.FunctionComponent<CategoriesListComponentProps> = (
+export const SortableListComponent: React.FunctionComponent<SortableListComponentProps> = (
   props,
 ) => {
   const {
-    categories,
-    editCategoryId,
+    items,
+    itemTypeName,
+    editItemId,
     onSave,
     onCancel,
     onEdit,
     onDelete,
     onReorder,
     onAdd,
+    onChangeVisibility,
   } = props;
 
   const handleDragEnd = (result) => {
@@ -37,23 +41,23 @@ export const CategoriesListComponent: React.FunctionComponent<CategoriesListComp
 
   return (
     <div className={classes.container}>
-      <AddCategoryComponent
-        isAdding={editCategoryId === 0}
+      <AddItemComponent
+        isAdding={editItemId === 0}
         onAdd={onAdd}
         onSave={onSave}
         onCancel={onCancel}
       />
-      {!!categories && categories.length > 0 ? (
+      {!!items && items.length > 0 ? (
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId='droppable'>
             {(provided) => (
               <RootRef rootRef={provided.innerRef}>
                 <List className={classes.container}>
-                  {categories.map((c, index) => (
+                  {items.map((i, index) => (
                     <Draggable
-                      isDragDisabled={editCategoryId !== false}
-                      key={c.id}
-                      draggableId={`${c.id}`}
+                      isDragDisabled={editItemId !== false}
+                      key={i.id}
+                      draggableId={`${i.id}`}
                       index={index}>
                       {(provided) => (
                         <ListItem
@@ -63,14 +67,16 @@ export const CategoriesListComponent: React.FunctionComponent<CategoriesListComp
                           ContainerProps={{ ref: provided.innerRef }}
                           {...provided.draggableProps}
                           {...provided.dragHandleProps}>
-                          <CategoryCardComponent
-                            id={c.id}
-                            name={c.name}
-                            edit={editCategoryId === c.id}
+                          <ItemCardComponent
+                            id={i.id}
+                            value={i.value}
+                            visible={i.visible}
+                            edit={editItemId === i.id}
                             onEdit={onEdit}
                             onDelete={onDelete}
                             onCancel={onCancel}
                             onSave={onSave}
+                            onChangeVisibility={onChangeVisibility}
                           />
                         </ListItem>
                       )}
@@ -83,7 +89,9 @@ export const CategoriesListComponent: React.FunctionComponent<CategoriesListComp
           </Droppable>
         </DragDropContext>
       ) : (
-        <Typography align='center'>No existen categorías</Typography>
+        editItemId !== 0 && (
+          <Typography align='center'>{`No existen ${itemTypeName ?? 'elementos'}`}</Typography>
+        )
       )}
     </div>
   );

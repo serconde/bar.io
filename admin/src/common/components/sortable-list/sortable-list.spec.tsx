@@ -1,19 +1,19 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { CategoriesListComponent } from './categories-list.component';
+import { SortableListComponent } from './sortable-list.component';
 
-describe('CategoriesListComponent test', () => {
-  it('should show the add button and a list of category cards when passed a valid list', () => {
+describe('SortableListComponent test', () => {
+  it('should show the add button and a list of item cards when passed a valid list', () => {
     // Arrange
     const props = {
-      categories: [
-        { id: 1, name: 'Entrantes' },
-        { id: 2, name: 'Primeros' },
-        { id: 3, name: 'Segundos' },
-        { id: 4, name: 'Postres' },
-        { id: 5, name: 'Bebidas' },
+      items: [
+        { id: 1, value: 'Entrantes' },
+        { id: 2, value: 'Primeros' },
+        { id: 3, value: 'Segundos' },
+        { id: 4, value: 'Postres' },
+        { id: 5, value: 'Bebidas' },
       ],
-      editCategoryId: false,
+      editItemId: false,
       onAdd: () => {
         return;
       },
@@ -26,7 +26,7 @@ describe('CategoriesListComponent test', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {
@@ -35,20 +35,20 @@ describe('CategoriesListComponent test', () => {
     };
 
     // Act
-    render(<CategoriesListComponent {...props} />);
-    const addButton = screen.getByLabelText('Añadir categoría');
+    render(<SortableListComponent {...props} />);
+    const addButton = screen.getByLabelText('Añadir');
     let cardAmount = 0;
-    props.categories.map((c) => (cardAmount += screen.queryAllByText(c.name).length));
+    props.items.map((c) => (cardAmount += screen.queryAllByText(c.value).length));
 
     // Assert
     expect(addButton).toBeInTheDocument();
-    expect(cardAmount).toBe(props.categories.length);
+    expect(cardAmount).toBe(props.items.length);
   });
-  it('should show the add button and a disclaimer message when passing an undefined categories list', () => {
+  it('should show the add button and a disclaimer message when passing an undefined items list', () => {
     // Arrange
     const props = {
-      categories: undefined,
-      editCategoryId: false,
+      items: undefined,
+      editItemId: false,
       onAdd: () => {
         return;
       },
@@ -61,7 +61,7 @@ describe('CategoriesListComponent test', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {
@@ -70,19 +70,19 @@ describe('CategoriesListComponent test', () => {
     };
 
     // Act
-    render(<CategoriesListComponent {...props} />);
-    const disclaimer = screen.getByText('No existen categorías');
+    render(<SortableListComponent {...props} />);
+    const disclaimer = screen.getByText('No existen elementos');
     const buttonAmount = screen.queryAllByRole('button').length;
 
     // Assert
     expect(disclaimer).toBeInTheDocument();
     expect(buttonAmount).toBe(1);
   });
-  it('should show "No existen categorías" when passing a null categories list', () => {
+  it('should show "No existen elementos" when passing a null items list', () => {
     // Arrange
     const props = {
-      categories: undefined,
-      editCategoryId: false,
+      items: undefined,
+      editItemId: false,
       onAdd: () => {
         return;
       },
@@ -95,7 +95,7 @@ describe('CategoriesListComponent test', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {
@@ -104,19 +104,19 @@ describe('CategoriesListComponent test', () => {
     };
 
     // Act
-    render(<CategoriesListComponent {...props} />);
-    const disclaimer = screen.getByText('No existen categorías');
-    const addButton = screen.getByLabelText('Añadir categoría');
+    render(<SortableListComponent {...props} />);
+    const disclaimer = screen.getByText('No existen elementos');
+    const addButton = screen.getByLabelText('Añadir');
 
     // Assert
     expect(disclaimer).toBeInTheDocument();
     expect(addButton).toBeInTheDocument();
   });
-  it('should show the add button and a disclaimer when passing a null categories list', () => {
+  it('should show the add button and a disclaimer when passing a null items list', () => {
     // Arrange
     const props = {
-      categories: undefined,
-      editCategoryId: false,
+      items: undefined,
+      editItemId: false,
       onAdd: () => {
         return;
       },
@@ -129,7 +129,7 @@ describe('CategoriesListComponent test', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {
@@ -138,9 +138,9 @@ describe('CategoriesListComponent test', () => {
     };
 
     // Act
-    render(<CategoriesListComponent {...props} />);
-    const disclaimer = screen.getByText('No existen categorías');
-    const addButton = screen.getByLabelText('Añadir categoría');
+    render(<SortableListComponent {...props} />);
+    const disclaimer = screen.getByText('No existen elementos');
+    const addButton = screen.getByLabelText('Añadir');
 
     // Assert
     expect(disclaimer).toBeInTheDocument();

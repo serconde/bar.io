@@ -1,14 +1,14 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { CategoryCardComponent } from './category-card.component';
+import { ItemCardComponent } from './item-card.component';
 
-describe('CategortyCardComponent tests', () => {
-  it('should show the category name and the edit and delete buttons when not editing', () => {
+describe('ItemCardComponent tests', () => {
+  it('should show the item value and the edit and delete buttons when not editing', () => {
     // Arrange
     const props = {
       id: 1,
-      name: 'Entrantes',
+      value: 'Test Value',
       edit: false,
       onEdit: (id: number) => {
         return;
@@ -16,7 +16,7 @@ describe('CategortyCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onCancel: () => {
@@ -25,25 +25,25 @@ describe('CategortyCardComponent tests', () => {
     };
 
     // Act
-    render(<CategoryCardComponent {...props} />);
-    const categoryName = screen.getByText(props.name);
-    const editButton = screen.getByLabelText(`Editar ${props.name}`);
-    const deleteButton = screen.getByLabelText(`Borrar ${props.name}`);
-    const saveButton = screen.queryByLabelText('Guardar categoría');
+    render(<ItemCardComponent {...props} />);
+    const itemValue = screen.getByText(props.value);
+    const editButton = screen.getByLabelText(`Editar ${props.value}`);
+    const deleteButton = screen.getByLabelText(`Borrar ${props.value}`);
+    const saveButton = screen.queryByLabelText('Guardar');
     const cancelButton = screen.queryByLabelText('Cancelar');
 
     // Assert
-    expect(categoryName).toBeInTheDocument();
+    expect(itemValue).toBeInTheDocument();
     expect(editButton).toBeInTheDocument();
     expect(deleteButton).toBeInTheDocument();
     expect(saveButton).toBeNull();
     expect(cancelButton).toBeNull();
   });
-  it('should show the category name and the save and cancel buttons when editing', () => {
+  it('should show the item value and the save and cancel buttons when editing', () => {
     // Arrange
     const props = {
       id: 1,
-      name: 'Entrantes',
+      value: 'Test Value',
       edit: true,
       onEdit: (id: number) => {
         return;
@@ -51,7 +51,7 @@ describe('CategortyCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onCancel: () => {
@@ -60,15 +60,15 @@ describe('CategortyCardComponent tests', () => {
     };
 
     // Act
-    render(<CategoryCardComponent {...props} />);
-    const categoryName = screen.getByRole('textbox');
-    const editButton = screen.queryByLabelText(`Editar ${props.name}`);
-    const deleteButton = screen.queryByLabelText(`Borrar ${props.name}`);
-    const saveButton = screen.getByLabelText('Guardar categoría');
+    render(<ItemCardComponent {...props} />);
+    const itemValue = screen.getByRole('textbox');
+    const editButton = screen.queryByLabelText(`Editar ${props.value}`);
+    const deleteButton = screen.queryByLabelText(`Borrar ${props.value}`);
+    const saveButton = screen.getByLabelText('Guardar');
     const cancelButton = screen.getByLabelText('Cancelar');
 
     // Assert
-    expect(categoryName).toBeInTheDocument();
+    expect(itemValue).toBeInTheDocument();
     expect(editButton).toBeNull();
     expect(deleteButton).toBeNull();
     expect(saveButton).toBeInTheDocument();
@@ -78,13 +78,13 @@ describe('CategortyCardComponent tests', () => {
     // Arrange
     const props = {
       id: 1,
-      name: 'Entrantes',
+      value: 'Test Value',
       edit: false,
       onEdit: jest.fn(),
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onCancel: () => {
@@ -93,8 +93,8 @@ describe('CategortyCardComponent tests', () => {
     };
 
     // Act
-    render(<CategoryCardComponent {...props} />);
-    const editButton = screen.getByLabelText(`Editar ${props.name}`);
+    render(<ItemCardComponent {...props} />);
+    const editButton = screen.getByLabelText(`Editar ${props.value}`);
     userEvent.click(editButton);
 
     // Assert
@@ -104,13 +104,13 @@ describe('CategortyCardComponent tests', () => {
     // Arrange
     const props = {
       id: 1,
-      name: 'Entrantes',
+      value: 'Test Value',
       edit: false,
       onEdit: () => {
         return;
       },
       onDelete: jest.fn(),
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onCancel: () => {
@@ -119,8 +119,8 @@ describe('CategortyCardComponent tests', () => {
     };
 
     // Act
-    render(<CategoryCardComponent {...props} />);
-    const deleteButton = screen.getByLabelText(`Borrar ${props.name}`);
+    render(<ItemCardComponent {...props} />);
+    const deleteButton = screen.getByLabelText(`Borrar ${props.value}`);
     userEvent.click(deleteButton);
 
     // Assert
@@ -130,7 +130,7 @@ describe('CategortyCardComponent tests', () => {
     // Arrange
     const props = {
       id: 1,
-      name: '',
+      value: '',
       edit: true,
       onEdit: () => {
         return;
@@ -145,10 +145,10 @@ describe('CategortyCardComponent tests', () => {
     };
 
     // Act
-    render(<CategoryCardComponent {...props} />);
-    const categoryName = screen.getByRole('textbox');
-    const saveButton = screen.getByLabelText('Guardar categoría');
-    userEvent.type(categoryName, 'Test');
+    render(<ItemCardComponent {...props} />);
+    const itemValue = screen.getByRole('textbox');
+    const saveButton = screen.getByLabelText('Guardar');
+    userEvent.type(itemValue, 'Test');
     userEvent.click(saveButton);
 
     // Assert
@@ -158,7 +158,7 @@ describe('CategortyCardComponent tests', () => {
     // Arrange
     const props = {
       id: 1,
-      name: 'Entrantes',
+      value: 'Test Value',
       edit: true,
       onEdit: () => {
         return;
@@ -166,25 +166,55 @@ describe('CategortyCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onCancel: jest.fn(),
     };
 
     // Act
-    render(<CategoryCardComponent {...props} />);
+    render(<ItemCardComponent {...props} />);
     const cancelButton = screen.getByLabelText('Cancelar');
     userEvent.click(cancelButton);
 
     // Assert
     expect(props.onCancel).toHaveBeenCalledTimes(1);
   });
+  it('should call onChangeVisibility when clicking on the visibility button', () => {
+    // Arrange
+    const props = {
+      id: 1,
+      value: 'Test Value',
+      edit: true,
+      visible: true,
+      onEdit: () => {
+        return;
+      },
+      onDelete: (id: number) => {
+        return;
+      },
+      onSave: (id: number, value: string) => {
+        return;
+      },
+      onCancel: () => {
+        return;
+      },
+      onChangeVisibility: jest.fn(),
+    };
+
+    // Act
+    render(<ItemCardComponent {...props} />);
+    const changeVisibilityButton = screen.getByLabelText(`Hacer invisible ${props.value}`);
+    userEvent.click(changeVisibilityButton);
+
+    // Assert
+    expect(props.onChangeVisibility).toHaveBeenCalledWith(1);
+  });
   it('should not render anything when passing a null id', () => {
     // Arrange
     const props = {
       id: null,
-      name: 'Entrantes',
+      value: 'Test Value',
       edit: false,
       onEdit: () => {
         return;
@@ -192,7 +222,7 @@ describe('CategortyCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onCancel: () => {
@@ -201,15 +231,15 @@ describe('CategortyCardComponent tests', () => {
     };
 
     // Act
-    render(<CategoryCardComponent {...props} />);
-    const categoryName = screen.queryByText(props.name);
-    const editButton = screen.queryByLabelText(`Editar ${props.name}`);
-    const deleteButton = screen.queryByLabelText(`Borrar ${props.name}`);
+    render(<ItemCardComponent {...props} />);
+    const itemValue = screen.queryByText(props.value);
+    const editButton = screen.queryByLabelText(`Editar ${props.value}`);
+    const deleteButton = screen.queryByLabelText(`Borrar ${props.value}`);
     const saveButton = screen.queryByLabelText('Guardar categoría');
     const cancelButton = screen.queryByLabelText('Cancelar');
 
     // Assert
-    expect(categoryName).toBeNull();
+    expect(itemValue).toBeNull();
     expect(editButton).toBeNull();
     expect(deleteButton).toBeNull();
     expect(saveButton).toBeNull();
@@ -220,7 +250,7 @@ describe('CategortyCardComponent tests', () => {
     // Arrange
     const props = {
       id: undefined,
-      name: 'Entrantes',
+      value: 'Test Value',
       edit: false,
       onEdit: () => {
         return;
@@ -228,7 +258,7 @@ describe('CategortyCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onCancel: () => {
@@ -237,25 +267,25 @@ describe('CategortyCardComponent tests', () => {
     };
 
     // Act
-    render(<CategoryCardComponent {...props} />);
-    const categoryName = screen.queryByText(props.name);
-    const editButton = screen.queryByLabelText(`Editar ${props.name}`);
-    const deleteButton = screen.queryByLabelText(`Borrar ${props.name}`);
+    render(<ItemCardComponent {...props} />);
+    const itemValue = screen.queryByText(props.value);
+    const editButton = screen.queryByLabelText(`Editar ${props.value}`);
+    const deleteButton = screen.queryByLabelText(`Borrar ${props.value}`);
     const saveButton = screen.queryByLabelText('Guardar categoría');
     const cancelButton = screen.queryByLabelText('Cancelar');
 
     // Assert
-    expect(categoryName).toBeNull();
+    expect(itemValue).toBeNull();
     expect(editButton).toBeNull();
     expect(deleteButton).toBeNull();
     expect(saveButton).toBeNull();
     expect(cancelButton).toBeNull();
   });
-  it('should not render anything when passing a null name', () => {
+  it('should not render anything when passing a null value', () => {
     // Arrange
     const props = {
       id: 1,
-      name: null,
+      value: null,
       edit: false,
       onEdit: () => {
         return;
@@ -263,7 +293,7 @@ describe('CategortyCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onCancel: () => {
@@ -272,9 +302,9 @@ describe('CategortyCardComponent tests', () => {
     };
 
     // Act
-    render(<CategoryCardComponent {...props} />);
-    const editButton = screen.queryByLabelText(`Editar ${props.name}`);
-    const deleteButton = screen.queryByLabelText(`Borrar ${props.name}`);
+    render(<ItemCardComponent {...props} />);
+    const editButton = screen.queryByLabelText(`Editar ${props.value}`);
+    const deleteButton = screen.queryByLabelText(`Borrar ${props.value}`);
     const saveButton = screen.queryByLabelText('Guardar categoría');
     const cancelButton = screen.queryByLabelText('Cancelar');
 
@@ -284,11 +314,11 @@ describe('CategortyCardComponent tests', () => {
     expect(saveButton).toBeNull();
     expect(cancelButton).toBeNull();
   });
-  it('should not render anything when passing an undefined name', () => {
+  it('should not render anything when passing an undefined value', () => {
     // Arrange
     const props = {
       id: 1,
-      name: undefined,
+      value: undefined,
       edit: false,
       onEdit: () => {
         return;
@@ -296,7 +326,7 @@ describe('CategortyCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onCancel: () => {
@@ -305,9 +335,9 @@ describe('CategortyCardComponent tests', () => {
     };
 
     // Act
-    render(<CategoryCardComponent {...props} />);
-    const editButton = screen.queryByLabelText(`Editar ${props.name}`);
-    const deleteButton = screen.queryByLabelText(`Borrar ${props.name}`);
+    render(<ItemCardComponent {...props} />);
+    const editButton = screen.queryByLabelText(`Editar ${props.value}`);
+    const deleteButton = screen.queryByLabelText(`Borrar ${props.value}`);
     const saveButton = screen.queryByLabelText('Guardar categoría');
     const cancelButton = screen.queryByLabelText('Cancelar');
 

@@ -1,18 +1,13 @@
-import { MenuCategory } from './menu-category.vm';
-
 import * as apiModel from './api/menu-category.model';
-import * as viewModel from './menu-category.vm';
+import * as viewModel from 'common/components/sortable-list/list-item.vm';
+import { createEmptyListItem } from 'common/components/sortable-list/list-item.vm';
 
 export const mapCategoriesListApiModelToViewModel = (
   categories: Array<apiModel.MenuCategory>,
-): Array<viewModel.MenuCategory> =>
+): Array<viewModel.ListItem> =>
   !!categories ? categories.map((c) => mapMenuCategoryApiModelToViewModel(c)) : [];
 
 export const mapMenuCategoryApiModelToViewModel = (
   menuCategory: apiModel.MenuCategory,
-): viewModel.MenuCategory => (!!menuCategory ? { ...menuCategory } : createEmptyMenuCategory());
-
-export const createEmptyMenuCategory = (): MenuCategory => ({
-  id: 0,
-  name: '',
-});
+): viewModel.ListItem =>
+  !!menuCategory ? { id: menuCategory.id, value: menuCategory.name } : createEmptyListItem();

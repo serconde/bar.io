@@ -1,11 +1,11 @@
+import { SortableListComponent } from 'common/components/sortable-list';
+import { ListItem } from 'common/components/sortable-list';
 import React from 'react';
 import { getMenuCategories } from './api';
-import { CategoriesListComponent } from './categories-list.component';
 import { mapCategoriesListApiModelToViewModel } from './categories-list.mapper';
-import { MenuCategory } from './menu-category.vm';
 
 export const CategoriesListContainer: React.FunctionComponent = () => {
-  const [categories, setCategories] = React.useState<Array<MenuCategory>>([]);
+  const [categories, setCategories] = React.useState<Array<ListItem>>([]);
   const [editCategoryId, setEditCategoryId] = React.useState<number | false>(false);
 
   const getCategories = async () => {
@@ -29,7 +29,7 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
 
   const onSave = (id: number, name: string) => {
     if (id !== 0) {
-      setCategories(categories.map((c) => (c.id === id ? { ...c, name: name } : c)));
+      setCategories(categories.map((c) => (c.id === id ? { ...c, value: name } : c)));
     } else {
       const newId =
         categories
@@ -37,7 +37,7 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
           .reduce((max, current) => (!!!max || current > max ? current : max)) + 1;
       categories.unshift({
         id: newId,
-        name: name,
+        value: name,
       });
     }
     setEditCategoryId(false);
@@ -49,9 +49,10 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
   const onAdd = () => setEditCategoryId(0);
 
   return (
-    <CategoriesListComponent
-      categories={categories}
-      editCategoryId={editCategoryId}
+    <SortableListComponent
+      items={categories}
+      itemTypeName='categorías'
+      editItemId={editCategoryId}
       onSave={onSave}
       onEdit={onEdit}
       onDelete={onDelete}

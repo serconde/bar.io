@@ -1,28 +1,28 @@
 import { IconButton } from '@material-ui/core';
 import { AddCircleOutlined } from '@material-ui/icons';
 import React from 'react';
-import { CategoryCardComponent } from '.';
-import * as classes from './add-category.styles';
+import { ItemCardComponent } from './item-card.component';
+import * as classes from './add-item.styles';
 
-interface AddCategoryComponentProps {
+interface AddItemComponentProps {
   onCancel: () => void;
   onSave: (id: number, name: string) => void;
   onAdd: () => void;
   isAdding: boolean;
 }
 
-export const AddCategoryComponent: React.FunctionComponent<AddCategoryComponentProps> = (props) => {
+export const AddItemComponent: React.FunctionComponent<AddItemComponentProps> = (props) => {
   const { onCancel, onSave, onAdd, isAdding } = props;
   return (
     <>
-      <IconButton aria-label='Añadir categoría' onClick={onAdd} disabled={isAdding}>
+      <IconButton aria-label='Añadir' onClick={onAdd} disabled={isAdding}>
         <AddCircleOutlined fontSize='large' />
       </IconButton>
       {isAdding && (
         <div className={classes.addCard}>
-          <CategoryCardComponent
+          <ItemCardComponent
             id={0}
-            name={''}
+            value={''}
             edit={true}
             onEdit={() => {
               return;

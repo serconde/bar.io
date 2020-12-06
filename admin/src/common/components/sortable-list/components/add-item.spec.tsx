@@ -1,16 +1,16 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { AddCategoryComponent } from '.';
+import { AddItemComponent } from './add-item.component';
 import userEvent from '@testing-library/user-event';
 
-describe('AddCategoryComponent tests', () => {
+describe('AddItemComponent tests', () => {
   it('should show the edition component when adding', () => {
     // Arrange
     const props = {
       onCancel: () => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onAdd: () => {
@@ -20,10 +20,10 @@ describe('AddCategoryComponent tests', () => {
     };
 
     // Act
-    render(<AddCategoryComponent {...props} />);
-    const addButton = screen.getByLabelText('Añadir categoría');
+    render(<AddItemComponent {...props} />);
+    const addButton = screen.getByLabelText('Añadir');
     const textField = screen.getByRole('textbox');
-    const saveButton = screen.getByLabelText('Guardar categoría');
+    const saveButton = screen.getByLabelText('Guardar');
     const cancelButton = screen.getByLabelText('Cancelar');
 
     // Assert
@@ -38,7 +38,7 @@ describe('AddCategoryComponent tests', () => {
       onCancel: () => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onAdd: () => {
@@ -48,10 +48,10 @@ describe('AddCategoryComponent tests', () => {
     };
 
     // Act
-    render(<AddCategoryComponent {...props} />);
-    const addButton = screen.getByLabelText('Añadir categoría');
+    render(<AddItemComponent {...props} />);
+    const addButton = screen.getByLabelText('Añadir');
     const textField = screen.queryByRole('textbox');
-    const saveButton = screen.queryByLabelText('Guardar categoría');
+    const saveButton = screen.queryByLabelText('Guardar');
     const cancelButton = screen.queryByLabelText('Cancelar');
 
     // Assert
@@ -66,7 +66,7 @@ describe('AddCategoryComponent tests', () => {
       onCancel: () => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onAdd: () => {
@@ -76,8 +76,8 @@ describe('AddCategoryComponent tests', () => {
     };
 
     // Act
-    render(<AddCategoryComponent {...props} />);
-    const addButton = screen.getByLabelText('Añadir categoría');
+    render(<AddItemComponent {...props} />);
+    const addButton = screen.getByLabelText('Añadir');
 
     // Assert
     expect(addButton).not.toBeDisabled();
@@ -88,7 +88,7 @@ describe('AddCategoryComponent tests', () => {
       onCancel: () => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onAdd: () => {
@@ -98,8 +98,8 @@ describe('AddCategoryComponent tests', () => {
     };
 
     // Act
-    render(<AddCategoryComponent {...props} />);
-    const addButton = screen.getByLabelText('Añadir categoría');
+    render(<AddItemComponent {...props} />);
+    const addButton = screen.getByLabelText('Añadir');
 
     // Assert
     expect(addButton).toBeDisabled();
@@ -110,7 +110,7 @@ describe('AddCategoryComponent tests', () => {
       onCancel: () => {
         return;
       },
-      onSave: (id: number, name: string) => {
+      onSave: (id: number, value: string) => {
         return;
       },
       onAdd: jest.fn(),
@@ -118,8 +118,8 @@ describe('AddCategoryComponent tests', () => {
     };
 
     // Act
-    render(<AddCategoryComponent {...props} />);
-    const addButton = screen.getByLabelText('Añadir categoría');
+    render(<AddItemComponent {...props} />);
+    const addButton = screen.getByLabelText('Añadir');
     userEvent.click(addButton);
 
     // Assert
@@ -139,9 +139,9 @@ describe('AddCategoryComponent tests', () => {
     };
 
     // Act
-    render(<AddCategoryComponent {...props} />);
+    render(<AddItemComponent {...props} />);
     const textField = screen.getByRole('textbox');
-    const saveButton = screen.getByLabelText('Guardar categoría');
+    const saveButton = screen.getByLabelText('Guardar');
     userEvent.type(textField, 'Test');
     userEvent.click(saveButton);
 
@@ -162,7 +162,7 @@ describe('AddCategoryComponent tests', () => {
     };
 
     // Act
-    render(<AddCategoryComponent {...props} />);
+    render(<AddItemComponent {...props} />);
     const cancelButton = screen.queryByLabelText('Cancelar');
     userEvent.click(cancelButton);
 

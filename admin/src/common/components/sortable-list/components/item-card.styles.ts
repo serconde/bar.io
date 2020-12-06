@@ -6,6 +6,6 @@ export const container = css`
   width: 100%;
 `;
 
-export const categoryName = css`
+export const card = css`
   width: 92%;
 `;

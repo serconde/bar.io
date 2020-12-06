@@ -1,6 +1,6 @@
 import * as apiModel from './api/menu-category.model';
 import { mapCategoriesListApiModelToViewModel } from './categories-list.mapper';
-import * as viewModel from './menu-category.vm';
+import * as viewModel from 'common/components/sortable-list/list-item.vm';
 
 describe('Categories List mapper tests', () => {
   it('should map to a valid view model when passing a valid api model', () => {
@@ -13,12 +13,12 @@ describe('Categories List mapper tests', () => {
       { id: 5, name: 'Bebidas' },
     ];
 
-    const expectedViewModels: Array<viewModel.MenuCategory> = [
-      { id: 1, name: 'Entrantes' },
-      { id: 2, name: 'Primeros' },
-      { id: 3, name: 'Segundos' },
-      { id: 4, name: 'Postres' },
-      { id: 5, name: 'Bebidas' },
+    const expectedViewModels: Array<viewModel.ListItem> = [
+      { id: 1, value: 'Entrantes' },
+      { id: 2, value: 'Primeros' },
+      { id: 3, value: 'Segundos' },
+      { id: 4, value: 'Postres' },
+      { id: 5, value: 'Bebidas' },
     ];
 
     // Act
@@ -31,7 +31,7 @@ describe('Categories List mapper tests', () => {
     // Arrange
     const apiModels: Array<apiModel.MenuCategory> = undefined;
 
-    const expectedViewModels: Array<viewModel.MenuCategory> = [];
+    const expectedViewModels: Array<viewModel.ListItem> = [];
 
     // Act
     const result = mapCategoriesListApiModelToViewModel(apiModels);
@@ -43,7 +43,7 @@ describe('Categories List mapper tests', () => {
     // Arrange
     const apiModels: Array<apiModel.MenuCategory> = null;
 
-    const expectedViewModels: Array<viewModel.MenuCategory> = [];
+    const expectedViewModels: Array<viewModel.ListItem> = [];
 
     // Act
     const result = mapCategoriesListApiModelToViewModel(apiModels);
@@ -55,7 +55,7 @@ describe('Categories List mapper tests', () => {
     // Arrange
     const apiModels: Array<apiModel.MenuCategory> = [];
 
-    const expectedViewModels: Array<viewModel.MenuCategory> = [];
+    const expectedViewModels: Array<viewModel.ListItem> = [];
 
     // Act
     const result = mapCategoriesListApiModelToViewModel(apiModels);
