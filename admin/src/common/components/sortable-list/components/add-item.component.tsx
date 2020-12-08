@@ -19,7 +19,7 @@ export const AddItemComponent: React.FunctionComponent<AddItemComponentProps> = 
         <AddCircleOutlined fontSize='large' />
       </IconButton>
       {isAdding && (
-        <div className={classes.addCard}>
+        <div className={classes.container}>
           <ItemCardComponent
             id={0}
             value={''}

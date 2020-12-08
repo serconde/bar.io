@@ -25,13 +25,13 @@ export const mapMenuCategoryApiModelToViewModel = (
   menuCategory: apiModel.MenuCategory,
 ): viewModel.MenuCategory => ({
   name: menuCategory.name,
-  dishes: !!menuCategory.dishes ? mapDishApiModelsToViewModels(menuCategory.dishes) : [],
+  products: !!menuCategory.products ? mapProductApiModelsToViewModels(menuCategory.products) : [],
 });
 
-export const mapDishApiModelsToViewModels = (dishes: Array<apiModel.Dish>): Array<viewModel.Dish> =>
-  dishes.map((d) => mapDishApiModelToViewModel(d));
+export const mapProductApiModelsToViewModels = (products: Array<apiModel.Product>): Array<viewModel.Product> =>
+  products.map((d) => mapProductApiModelToViewModel(d));
 
-export const mapDishApiModelToViewModel = (dish: apiModel.Dish): viewModel.Dish => ({
-  ...dish,
-  price: formatToEuros(dish.price),
+export const mapProductApiModelToViewModel = (product: apiModel.Product): viewModel.Product => ({
+  ...product,
+  price: formatToEuros(product.price),
 });

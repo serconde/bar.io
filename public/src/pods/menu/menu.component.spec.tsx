@@ -15,7 +15,7 @@ describe('MenuComponent tests', () => {
       categories: [
         {
           name: 'Entrantes',
-          dishes: [
+          products: [
             {
               id: 1,
               name: 'Chorizo criollo',

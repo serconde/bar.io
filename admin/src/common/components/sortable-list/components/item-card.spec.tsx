@@ -185,7 +185,7 @@ describe('ItemCardComponent tests', () => {
     const props = {
       id: 1,
       value: 'Test Value',
-      edit: true,
+      edit: false,
       visible: true,
       onEdit: () => {
         return;

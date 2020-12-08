@@ -8,12 +8,12 @@ import * as classes from './sortable-list.styles';
 interface SortableListComponentProps {
   items: Array<Item>;
   itemTypeName?: string;
-  editItemId: number | boolean;
+  editItemId?: number | boolean;
   onDelete: (id: number) => void;
   onEdit: (id: number) => void;
-  onSave: (id: number, value: string) => void;
+  onSave?: (id: number, value: string) => void;
   onAdd: () => void;
-  onCancel: () => void;
+  onCancel?: () => void;
   onChangeVisibility?: (id: number) => void;
   onReorder: (startIndex: number, endIndex: number) => void;
 }
@@ -40,22 +40,27 @@ export const SortableListComponent: React.FunctionComponent<SortableListComponen
   };
 
   return (
-    <div className={classes.container}>
+    <>
       <AddItemComponent
         isAdding={editItemId === 0}
         onAdd={onAdd}
         onSave={onSave}
         onCancel={onCancel}
       />
+      {(!!!items || items.length === 0) && editItemId !== 0 && (
+        <Typography align='center' component='span'>{`No existen ${
+          itemTypeName ?? 'elementos'
+        }`}</Typography>
+      )}
       {!!items && items.length > 0 ? (
         <DragDropContext onDragEnd={handleDragEnd}>
           <Droppable droppableId='droppable'>
             {(provided) => (
               <RootRef rootRef={provided.innerRef}>
-                <List className={classes.container}>
+                <List>
                   {items.map((i, index) => (
                     <Draggable
-                      isDragDisabled={editItemId !== false}
+                      isDragDisabled={editItemId !== false && editItemId !== undefined}
                       key={i.id}
                       draggableId={`${i.id}`}
                       index={index}>
@@ -89,10 +94,8 @@ export const SortableListComponent: React.FunctionComponent<SortableListComponen
           </Droppable>
         </DragDropContext>
       ) : (
-        editItemId !== 0 && (
-          <Typography align='center'>{`No existen ${itemTypeName ?? 'elementos'}`}</Typography>
-        )
+        ''
       )}
-    </div>
+    </>
   );
 };

@@ -79,7 +79,7 @@ export const ItemCardComponent: React.FunctionComponent<ItemCardComponentProps> 
               <Create />
             </IconButton>
           )}
-          {visible !== undefined && !!edit && (
+          {visible !== undefined && !!!edit && (
             <IconButton
               aria-label={`Hacer ${visible ? 'invisible' : 'visible'} ${value}`}
               onClick={handleChangeVisibility}>

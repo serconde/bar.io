@@ -4,13 +4,13 @@ import { MenuListComponent } from '.';
 import { formatToEuros } from 'common';
 
 describe('MenuListComponentTest', () => {
-  it('should show the menu categories and their dishes when passed a valid menu', () => {
+  it('should show the menu categories and their products when passed a valid menu', () => {
     // Arrange
     const props = {
       categories: [
         {
           name: 'Entrantes',
-          dishes: [
+          products: [
             {
               id: 1,
               name: 'Chorizo criollo',
@@ -30,7 +30,7 @@ describe('MenuListComponentTest', () => {
         },
         {
           name: 'Platos Principales',
-          dishes: [
+          products: [
             {
               id: 12,
               name: 'Flamenquín cordobés',
@@ -50,7 +50,7 @@ describe('MenuListComponentTest', () => {
         },
         {
           name: 'Postres',
-          dishes: [
+          products: [
             {
               id: 21,
               name: 'Torrijas',
@@ -65,7 +65,7 @@ describe('MenuListComponentTest', () => {
         },
         {
           name: 'Bebidas',
-          dishes: [
+          products: [
             {
               id: 24,
               name: 'Refrescos',
@@ -91,13 +91,13 @@ describe('MenuListComponentTest', () => {
     const categories = props.categories
       .map((c) => c.name)
       .map((name) => screen.getByLabelText(name));
-    const dishes = new Array<string>();
-    props.categories.map((c) => c.dishes.map((d) => dishes.push(`${d.name}`)));
-    const dishItems = dishes.map((d) => screen.getByText(d));
+    const products = new Array<string>();
+    props.categories.map((c) => c.products.map((d) => products.push(`${d.name}`)));
+    const productItems = products.map((d) => screen.getByText(d));
 
     // Assert
     expect(categories.length).toBe(props.categories.length);
-    expect(dishItems.length).toBe(dishes.length);
+    expect(productItems.length).toBe(products.length);
   });
 
   it('should not show anything when passing and empty list', () => {

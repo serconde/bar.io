@@ -1,21 +1,21 @@
 import { List, ListItem } from '@material-ui/core';
 import React from 'react';
-import { Dish } from '../menu.vm';
+import { Product } from '../menu.vm';
 import * as classes from './menu-list.styles';
 
 interface SubmenuCategoryComponentProps {
-  dishes: Array<Dish>;
+  products: Array<Product>;
 }
 
 export const SubmenuCategoryComponent: React.FunctionComponent<SubmenuCategoryComponentProps> = ({
-  dishes,
+  products,
 }) => (
   <List component='div' className={classes.category}>
-    {!!dishes &&
-      dishes.map((dish) => (
-        <ListItem key={`dish-${dish.id}`} aria-label={`${dish.name} ${dish.price}`} button>
-          <div className={classes.name}>{dish.name}</div>
-          <div className={classes.price}>{dish.price}</div>
+    {!!products &&
+      products.map((product) => (
+        <ListItem key={`product-${product.id}`} aria-label={`${product.name} ${product.price}`} button>
+          <div className={classes.name}>{product.name}</div>
+          <div className={classes.price}>{product.price}</div>
         </ListItem>
       ))}
   </List>

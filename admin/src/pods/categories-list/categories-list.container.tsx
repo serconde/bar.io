@@ -1,8 +1,10 @@
+import { Typography } from '@material-ui/core';
 import { SortableListComponent } from 'common/components/sortable-list';
 import { ListItem } from 'common/components/sortable-list';
 import React from 'react';
-import { getMenuCategories } from './api';
-import { mapCategoriesListApiModelToViewModel } from './categories-list.mapper';
+import { getMenuCategories } from '../../common/api';
+import { mapMenuCategoriesToListItems } from './categories-list.mapper';
+import * as classes from './categories-list.styles';
 
 export const CategoriesListContainer: React.FunctionComponent = () => {
   const [categories, setCategories] = React.useState<Array<ListItem>>([]);
@@ -10,7 +12,7 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
 
   const getCategories = async () => {
     const menuCategories = await getMenuCategories();
-    setCategories(mapCategoriesListApiModelToViewModel(menuCategories));
+    setCategories(mapMenuCategoriesToListItems(menuCategories));
   };
 
   React.useEffect(() => {
@@ -20,7 +22,7 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
     loadCategories();
   }, []);
 
-  const reorder = (startIndex, endIndex) => {
+  const onReorder = (startIndex, endIndex) => {
     const result = Array.from(categories);
     const [removed] = result.splice(startIndex, 1);
     result.splice(endIndex, 0, removed);
@@ -49,16 +51,21 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
   const onAdd = () => setEditCategoryId(0);
 
   return (
-    <SortableListComponent
-      items={categories}
-      itemTypeName='categorías'
-      editItemId={editCategoryId}
-      onSave={onSave}
-      onEdit={onEdit}
-      onDelete={onDelete}
-      onReorder={reorder}
-      onCancel={onCancel}
-      onAdd={onAdd}
-    />
+    <div className={classes.container}>
+      <Typography>
+        <h1>Categorías</h1>
+      </Typography>
+      <SortableListComponent
+        items={categories}
+        itemTypeName='categorías'
+        editItemId={editCategoryId}
+        onSave={onSave}
+        onEdit={onEdit}
+        onDelete={onDelete}
+        onReorder={onReorder}
+        onCancel={onCancel}
+        onAdd={onAdd}
+      />
+    </div>
   );
 };

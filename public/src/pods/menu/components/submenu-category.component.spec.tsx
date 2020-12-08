@@ -4,10 +4,10 @@ import { formatToEuros } from 'common';
 import { SubmenuCategoryComponent } from './submenu-category.component';
 
 describe('SubmenuCategoryComponentTest', () => {
-  it('should show the menu dishes dishes when passed a valid list', () => {
+  it('should show the menu products products when passed a valid list', () => {
     // Arrange
     const props = {
-      dishes: [
+      products: [
         {
           id: 1,
           name: 'Chorizo criollo',
@@ -28,16 +28,16 @@ describe('SubmenuCategoryComponentTest', () => {
 
     // Act
     render(<SubmenuCategoryComponent {...props} />);
-    const dishItems = props.dishes.map((d) => screen.getByText(d.name));
+    const productItems = props.products.map((d) => screen.getByText(d.name));
 
     // Assert
-    expect(dishItems.length).toBe(props.dishes.length);
+    expect(productItems.length).toBe(props.products.length);
   });
 
   it('should not show anything when passing and empty list', () => {
     // Arrange
     const props = {
-      dishes: [],
+      products: [],
     };
 
     // Act
@@ -50,7 +50,7 @@ describe('SubmenuCategoryComponentTest', () => {
   it('should not show anything when passing a null list', () => {
     // Arrange
     const props = {
-      dishes: null,
+      products: null,
     };
 
     // Act
@@ -63,7 +63,7 @@ describe('SubmenuCategoryComponentTest', () => {
   it('should not show anything when passing an undefined list', () => {
     // Arrange
     const props = {
-      dishes: undefined,
+      products: undefined,
     };
 
     // Act
