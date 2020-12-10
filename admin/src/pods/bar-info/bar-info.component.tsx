@@ -19,7 +19,7 @@ import Button from '@material-ui/core/Button';
 //CSS
 import * as classes from './bar-info.styles';
 
-interface Props {
+export interface Props {
   info: BarInfo;
   onSave: (barInfo: BarInfo) => void;
   onCancel: () => void;
