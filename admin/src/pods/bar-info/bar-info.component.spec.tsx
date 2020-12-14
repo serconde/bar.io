@@ -20,7 +20,7 @@ describe('pods/bar-info/bar-info.component specs', () => {
     // Assert
     expect(inputElements[0]).toHaveValue('My name');
     expect(inputElements[1]).toHaveValue('My address');
-    expect(inputElements[2]).toHaveValue('666666666');
+    expect(inputElements[2]).toHaveValue('Facebook');
   });
 
   it('should call onSave property when it click on "Save" button', async () => {
