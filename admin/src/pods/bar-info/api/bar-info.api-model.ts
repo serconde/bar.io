@@ -1,5 +1,5 @@
 export interface BarInfo {
-  name: string;
-  address: string;
-  numberPhone: number;
+  infoA: string;
+  infoB: string;
+  infoC: string;
 }

@@ -39,9 +39,9 @@ export const BarInfoComponent: React.FunctionComponent<Props> = (props) => {
           {() => (
             <Form>
               <div className={classes.form}>
-                <TextFieldComponent name='name' label='Name' />
-                <TextFieldComponent name='address' label='Address' />
-                <TextFieldComponent name='numberPhone' label='Number Phone' type='tel' />
+                <TextFieldComponent name='infoA' label='Info A' />
+                <TextFieldComponent name='infoB' label='Info B' />
+                <TextFieldComponent name='infoC' label='Info C' />
 
                 <Button type='submit' variant='contained' color='primary'>
                   Save

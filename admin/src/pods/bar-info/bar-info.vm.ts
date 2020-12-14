@@ -1,11 +1,11 @@
 export interface BarInfo {
-  name: string;
-  address: string;
-  numberPhone: number;
+  infoA: string;
+  infoB: string;
+  infoC: string;
 }
 
 export const createEmptyBarInfo = (): BarInfo => ({
-  name: '',
-  address: '',
-  numberPhone: 0,
+  infoA: '',
+  infoB: '',
+  infoC: '',
 });

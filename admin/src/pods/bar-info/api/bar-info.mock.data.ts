@@ -2,7 +2,7 @@
 import { BarInfo } from './bar-info.api-model';
 
 export const mockBarInfo: BarInfo = {
-  address: 'My address',
-  name: 'My name',
-  numberPhone: 666666666,
+  infoA: 'My name',
+  infoB: 'My address',
+  infoC: 'Facebook',
 };

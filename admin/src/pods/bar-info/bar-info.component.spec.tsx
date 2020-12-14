@@ -7,7 +7,7 @@ describe('pods/bar-info/bar-info.component specs', () => {
   it('should display bar info when it feeds with some info', () => {
     // Arrange
     const props: Props = {
-      info: { name: 'My name', address: 'My address', numberPhone: 666666666 },
+      info: { infoA: 'My name', infoB: 'My address', infoC: 'Facebook' },
       onSave: jest.fn(),
       onCancel: jest.fn(),
     };
@@ -26,7 +26,7 @@ describe('pods/bar-info/bar-info.component specs', () => {
   it('should call onSave property when it click on "Save" button', async () => {
     // Arrange
     const props: Props = {
-      info: { name: 'My name', address: 'My address', numberPhone: 666666666 },
+      info: { infoA: 'My name', infoB: 'My address', infoC: 'Facebook' },
       onSave: jest.fn(),
       onCancel: jest.fn(),
     };
@@ -47,7 +47,7 @@ describe('pods/bar-info/bar-info.component specs', () => {
   it('should call onCancel property when it click on "Cancel" button', () => {
     // Arrange
     const props: Props = {
-      info: { name: 'My name', address: 'My address', numberPhone: 666666666 },
+      info: { infoA: 'My name', infoB: 'My address', infoC: 'Facebook' },
       onSave: jest.fn(),
       onCancel: jest.fn(),
     };
