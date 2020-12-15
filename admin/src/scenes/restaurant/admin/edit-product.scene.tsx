@@ -1,11 +1,12 @@
 import React, { FC } from 'react';
 import { CenteredLayout } from 'layouts';
+import { EditProductContainer } from 'pods/edit-product/edit-product.container';
 
 export const EditProductScene: FC = () => {
   return (
     <>
       <CenteredLayout>
-        <h1>Edit Product</h1>
+        <EditProductContainer />
       </CenteredLayout>
     </>
   );

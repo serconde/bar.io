@@ -16,16 +16,25 @@ export const switchRoutes: SwitchRoutes = {
   dashboard: '/dashboard',
   barInfo: '/barInfo',
   categoriesList: '/categories',
-  productList: '/products',
-  editProduct: '/product/:id?',
+  productList: '/products/:categoryId?',
+  editProduct: '/product/:categoryId?/:productId?',
 };
 
-interface Routes extends Omit<SwitchRoutes, 'editProduct'> {
-  editProduct: (id?: number) => string;
+interface Routes extends Omit<SwitchRoutes, 'productList' | 'editProduct'> {
+  productList: (categoryId?: number) => string;
+  editProduct: (categoryId?: number, productId?: number) => string;
 }
 
 export const routes: Routes = {
   ...switchRoutes,
-  editProduct: (id) =>
-    !!id ? generatePath(switchRoutes.editProduct, { id }) : generatePath(switchRoutes.editProduct),
+  productList: (categoryId?: number) =>
+    !!categoryId
+      ? generatePath(switchRoutes.productList, { categoryId })
+      : generatePath(switchRoutes.productList),
+  editProduct: (categoryId?: number, productId?: number) =>
+    !!productId
+      ? generatePath(switchRoutes.editProduct, { categoryId, productId })
+      : !!categoryId
+      ? generatePath(switchRoutes.editProduct, { categoryId })
+      : generatePath(switchRoutes.editProduct),
 };

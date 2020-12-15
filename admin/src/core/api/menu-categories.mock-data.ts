@@ -1,4 +1,4 @@
-import { MenuCategory } from './menu-category.model';
+import { MenuCategory } from './menu-categories.model';
 
 export const mockedMenuCategories: Array<MenuCategory> = [
   {

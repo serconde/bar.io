@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Card, CardContent, CardHeader } from '@material-ui/core';
 import { SortableListComponent } from 'common/components/sortable-list';
 import { ListItem } from 'common/components/sortable-list';
 import { reorder } from 'common/utils/array';
@@ -49,18 +49,22 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
 
   return (
     <div className={classes.container}>
-      <Typography component='h1'>Categorías</Typography>
-      <SortableListComponent
-        items={categories}
-        itemTypeName='categorías'
-        editItemId={editCategoryId}
-        onSave={onSave}
-        onEdit={onEdit}
-        onDelete={onDelete}
-        onReorder={onReorder}
-        onCancel={onCancel}
-        onAdd={onAdd}
-      />
+      <Card>
+        <CardHeader component='h1' title='Categorías' />
+        <CardContent>
+          <SortableListComponent
+            items={categories}
+            itemTypeName='categorías'
+            editItemId={editCategoryId}
+            onSave={onSave}
+            onEdit={onEdit}
+            onDelete={onDelete}
+            onReorder={onReorder}
+            onCancel={onCancel}
+            onAdd={onAdd}
+          />
+        </CardContent>
+      </Card>
     </div>
   );
 };
