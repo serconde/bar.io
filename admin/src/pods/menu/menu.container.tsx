@@ -15,12 +15,12 @@ export const MenuContainer: React.FunctionComponent = () => {
     (): DashboardItemProps[] => [
       {
         title: 'Información del bar',
-        linkTo: '#', // No link defined
+        linkTo: routes.barInfo,
         icon: InfoIcon,
       },
       {
         title: 'Categorías',
-        linkTo: routes.categoriesList, // No link defined
+        linkTo: routes.categoriesList,
         icon: FolderIcon,
       },
       {
