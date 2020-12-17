@@ -10,6 +10,7 @@ import { ProductListComponent } from './product-list.component';
 import { useMenuCategories } from './use-menu-categories.hook';
 import * as classes from './product-list.styles';
 import { Typography } from '@material-ui/core';
+import { reorder } from 'common/utils/array';
 
 export const ProductListContainer: React.FunctionComponent = () => {
   const {
@@ -18,7 +19,7 @@ export const ProductListContainer: React.FunctionComponent = () => {
     selectedCategoryId,
     products,
     changeCategory,
-    updateSelectedCategoryProducts: updateCurrentCategoryProducts,
+    updateSelectedCategoryProducts,
   } = useMenuCategories([], 0);
   const history = useHistory();
 
@@ -34,19 +35,15 @@ export const ProductListContainer: React.FunctionComponent = () => {
 
   const onChangeProductVisibility = (id: number) => {
     const newProducts = products.map((p) => (p.id === id ? { ...p, visible: !p.visible } : p));
-    updateCurrentCategoryProducts(newProducts);
+    updateSelectedCategoryProducts(newProducts);
   };
 
-  const onReorderProducts = (startIndex, endIndex) => {
-    const result = Array.from(products);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-    updateCurrentCategoryProducts(result);
-  };
+  const onReorderProducts = (startIndex: number, endIndex: number) =>
+    updateSelectedCategoryProducts(reorder(products, startIndex, endIndex));
 
   const onDeleteProduct = (id: number) => {
     const newProducts = products.filter((p) => p.id !== id);
-    updateCurrentCategoryProducts(newProducts);
+    updateSelectedCategoryProducts(newProducts);
   };
 
   const onEditProduct = (id: number) => history.push(routes.editProduct(id));
@@ -65,9 +62,7 @@ export const ProductListContainer: React.FunctionComponent = () => {
 
   return (
     <div className={classes.container}>
-      <Typography>
-        <h1>Categorías</h1>
-      </Typography>
+      <Typography component='h1'>Categorías</Typography>
       <ProductListComponent
         categories={mapMenuCategoriesToListItems(categories)}
         products={mapProductsToListItems(products)}

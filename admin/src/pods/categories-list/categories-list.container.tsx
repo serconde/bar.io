@@ -1,6 +1,7 @@
 import { Typography } from '@material-ui/core';
 import { SortableListComponent } from 'common/components/sortable-list';
 import { ListItem } from 'common/components/sortable-list';
+import { reorder } from 'common/utils/array';
 import React from 'react';
 import { getMenuCategories } from '../../core/api';
 import { mapMenuCategoriesToListItems } from './categories-list.mapper';
@@ -22,12 +23,8 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
     loadCategories();
   }, []);
 
-  const onReorder = (startIndex, endIndex) => {
-    const result = Array.from(categories);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-    setCategories(result);
-  };
+  const onReorder = (startIndex, endIndex) =>
+    setCategories(reorder(categories, startIndex, endIndex));
 
   const onSave = (id: number, name: string) => {
     if (id !== 0) {
@@ -52,9 +49,7 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
 
   return (
     <div className={classes.container}>
-      <Typography>
-        <h1>Categorías</h1>
-      </Typography>
+      <Typography component='h1'>Categorías</Typography>
       <SortableListComponent
         items={categories}
         itemTypeName='categorías'

@@ -1,4 +1,5 @@
 import { MenuCategory, Product } from 'core/api';
+import produce from 'immer';
 import React from 'react';
 
 interface UseMenuCategoriesHook {
@@ -24,9 +25,10 @@ export const useMenuCategories = (
 
   const updateSelectedCategoryProducts = (prods: Array<Product>) => {
     setProducts(prods);
-    setCategories(
-      categories.map((c) => (c.id === selectedCategoryId ? c : { ...c, products: prods })),
-    );
+    const newCategories = produce(categories, (draft) => {
+      draft.find((c) => c.id === selectedCategoryId).products = prods;
+    });
+    setCategories(newCategories);
   };
 
   const changeCategory = (id: number) => {
