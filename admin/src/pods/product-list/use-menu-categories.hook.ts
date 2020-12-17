@@ -1,4 +1,4 @@
-import { MenuCategory, Product } from 'common/api';
+import { MenuCategory, Product } from 'core/api';
 import React from 'react';
 
 interface UseMenuCategoriesHook {

@@ -1,4 +1,4 @@
-import { MenuCategory, Product } from 'common/api';
+import { MenuCategory, Product } from 'core/api';
 import { ListItem } from 'common/components/sortable-list/list-item.vm';
 import { createEmptyListItem } from 'common/components/sortable-list/list-item.vm';
 import { formatToEuro } from 'common/utils';

@@ -1,4 +1,4 @@
-import { getMenuCategories } from 'common/api';
+import { getMenuCategories } from 'core/api';
 import { routes } from 'core/router';
 import {
   mapMenuCategoriesToListItems,

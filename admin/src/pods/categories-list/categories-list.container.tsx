@@ -2,7 +2,7 @@ import { Typography } from '@material-ui/core';
 import { SortableListComponent } from 'common/components/sortable-list';
 import { ListItem } from 'common/components/sortable-list';
 import React from 'react';
-import { getMenuCategories } from '../../common/api';
+import { getMenuCategories } from '../../core/api';
 import { mapMenuCategoriesToListItems } from './categories-list.mapper';
 import * as classes from './categories-list.styles';
 

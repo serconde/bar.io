@@ -1,11 +1,11 @@
-import { MenuCategory } from 'common/api/menu-category.model';
+import { MenuCategory } from 'core/api/menu-category.model';
 import {
   mapMenuCategoriesToListItems,
   mapProductsToListItems,
   mapProductToListItem,
 } from './categories-list.mapper';
 import { ListItem } from 'common/components/sortable-list/list-item.vm';
-import { Product } from 'common/api/product.model';
+import { Product } from 'core/api/product.model';
 import { formatToEuro } from 'common/utils';
 
 describe('Categories List mapper tests', () => {

@@ -1,5 +1,5 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import { MenuCategory, Product } from 'common/api';
+import { MenuCategory, Product } from 'core/api';
 import { useMenuCategories } from './use-menu-categories.hook';
 
 describe('useMenuCategories hook tests', () => {
