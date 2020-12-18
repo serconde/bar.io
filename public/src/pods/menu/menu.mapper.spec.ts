@@ -14,7 +14,7 @@ describe('Menu mapper tests', () => {
       categories: [
         {
           name: 'Entrantes',
-          dishes: [
+          products: [
             {
               id: 1,
               name: 'Chorizo criollo',
@@ -44,7 +44,7 @@ describe('Menu mapper tests', () => {
       categories: [
         {
           name: 'Entrantes',
-          dishes: [
+          products: [
             {
               id: 1,
               name: 'Chorizo criollo',

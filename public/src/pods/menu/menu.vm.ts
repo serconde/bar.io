@@ -11,10 +11,10 @@ export interface RestaurantInfo {
 
 export interface MenuCategory {
   name: string;
-  dishes: Array<Dish>;
+  products: Array<Product>;
 }
 
-export interface Dish {
+export interface Product {
   id: number;
   name: string;
   price: string;

@@ -1,16 +1,19 @@
+import { Typography } from '@material-ui/core';
+import { SortableListComponent } from 'common/components/sortable-list';
+import { ListItem } from 'common/components/sortable-list';
+import { reorder } from 'common/utils/array';
 import React from 'react';
-import { getMenuCategories } from './api';
-import { CategoriesListComponent } from './categories-list.component';
-import { mapCategoriesListApiModelToViewModel } from './categories-list.mapper';
-import { MenuCategory } from './menu-category.vm';
+import { getMenuCategories } from '../../core/api';
+import { mapMenuCategoriesToListItems } from './categories-list.mapper';
+import * as classes from './categories-list.styles';
 
 export const CategoriesListContainer: React.FunctionComponent = () => {
-  const [categories, setCategories] = React.useState<Array<MenuCategory>>([]);
+  const [categories, setCategories] = React.useState<Array<ListItem>>([]);
   const [editCategoryId, setEditCategoryId] = React.useState<number | false>(false);
 
   const getCategories = async () => {
     const menuCategories = await getMenuCategories();
-    setCategories(mapCategoriesListApiModelToViewModel(menuCategories));
+    setCategories(mapMenuCategoriesToListItems(menuCategories));
   };
 
   React.useEffect(() => {
@@ -20,16 +23,12 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
     loadCategories();
   }, []);
 
-  const reorder = (startIndex, endIndex) => {
-    const result = Array.from(categories);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-    setCategories(result);
-  };
+  const onReorder = (startIndex, endIndex) =>
+    setCategories(reorder(categories, startIndex, endIndex));
 
   const onSave = (id: number, name: string) => {
     if (id !== 0) {
-      setCategories(categories.map((c) => (c.id === id ? { ...c, name: name } : c)));
+      setCategories(categories.map((c) => (c.id === id ? { ...c, value: name } : c)));
     } else {
       const newId =
         categories
@@ -37,7 +36,7 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
           .reduce((max, current) => (!!!max || current > max ? current : max)) + 1;
       categories.unshift({
         id: newId,
-        name: name,
+        value: name,
       });
     }
     setEditCategoryId(false);
@@ -49,15 +48,19 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
   const onAdd = () => setEditCategoryId(0);
 
   return (
-    <CategoriesListComponent
-      categories={categories}
-      editCategoryId={editCategoryId}
-      onSave={onSave}
-      onEdit={onEdit}
-      onDelete={onDelete}
-      onReorder={reorder}
-      onCancel={onCancel}
-      onAdd={onAdd}
-    />
+    <div className={classes.container}>
+      <Typography component='h1'>Categorías</Typography>
+      <SortableListComponent
+        items={categories}
+        itemTypeName='categorías'
+        editItemId={editCategoryId}
+        onSave={onSave}
+        onEdit={onEdit}
+        onDelete={onDelete}
+        onReorder={onReorder}
+        onCancel={onCancel}
+        onAdd={onAdd}
+      />
+    </div>
   );
 };

@@ -11,7 +11,7 @@ const mockedMenu: Menu = {
   categories: [
     {
       name: 'Entrantes',
-      dishes: [
+      products: [
         {
           id: 1,
           name: 'Chorizo criollo',
@@ -66,7 +66,7 @@ const mockedMenu: Menu = {
     },
     {
       name: 'Platos Principales',
-      dishes: [
+      products: [
         {
           id: 12,
           name: 'Flamenquín cordobés',
@@ -96,7 +96,7 @@ const mockedMenu: Menu = {
     },
     {
       name: 'Ensaladas',
-      dishes: [
+      products: [
         {
           id: 17,
           name: 'Tomate en rodajas y ventresca',
@@ -121,7 +121,7 @@ const mockedMenu: Menu = {
     },
     {
       name: 'Postres',
-      dishes: [
+      products: [
         {
           id: 21,
           name: 'Torrijas',
@@ -146,7 +146,7 @@ const mockedMenu: Menu = {
     },
     {
       name: 'Bebidas',
-      dishes: [
+      products: [
         {
           id: 24,
           name: 'Refrescos',

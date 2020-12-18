@@ -38,7 +38,7 @@ export const MenuListComponent: React.FunctionComponent<MenuListProps> = (props)
               <Typography>{category.name}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <SubmenuCategoryComponent dishes={category.dishes} />
+              <SubmenuCategoryComponent products={category.products} />
             </AccordionDetails>
           </Accordion>
         ))}
