@@ -16,7 +16,7 @@ describe('ItemCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onCancel: () => {
@@ -51,7 +51,7 @@ describe('ItemCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onCancel: () => {
@@ -84,7 +84,7 @@ describe('ItemCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onCancel: () => {
@@ -110,7 +110,7 @@ describe('ItemCardComponent tests', () => {
         return;
       },
       onDelete: jest.fn(),
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onCancel: () => {
@@ -152,7 +152,7 @@ describe('ItemCardComponent tests', () => {
     userEvent.click(saveButton);
 
     // Assert
-    expect(props.onSave).toHaveBeenCalledWith(1, 'Test');
+    expect(props.onSave).toHaveBeenCalledWith('Test', 1);
   });
   it('should call onCancel when clicking on the cancel button', () => {
     // Arrange
@@ -166,7 +166,7 @@ describe('ItemCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onCancel: jest.fn(),
@@ -193,7 +193,7 @@ describe('ItemCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onCancel: () => {
@@ -222,7 +222,7 @@ describe('ItemCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onCancel: () => {
@@ -258,7 +258,7 @@ describe('ItemCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onCancel: () => {
@@ -293,7 +293,7 @@ describe('ItemCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onCancel: () => {
@@ -326,7 +326,7 @@ describe('ItemCardComponent tests', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onCancel: () => {

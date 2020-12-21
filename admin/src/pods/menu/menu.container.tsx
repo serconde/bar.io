@@ -24,8 +24,8 @@ export const MenuContainer: React.FunctionComponent = () => {
         icon: FolderIcon,
       },
       {
-        title: 'Comida',
-        linkTo: '#', // No link defined
+        title: 'Productos',
+        linkTo: routes.productList,
         icon: RestaurantMenuIcon,
       },
     ],

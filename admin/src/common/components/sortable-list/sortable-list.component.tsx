@@ -11,7 +11,7 @@ interface SortableListComponentProps {
   editItemId?: number | boolean;
   onDelete: (id: number) => void;
   onEdit: (id: number) => void;
-  onSave?: (id: number, value: string) => void;
+  onSave?: (value: string, id?: number) => void;
   onAdd: () => void;
   onCancel?: () => void;
   onChangeVisibility?: (id: number) => void;
