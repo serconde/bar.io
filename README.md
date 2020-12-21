@@ -17,7 +17,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/Lemoncode/planning-poker-example">
-    <img src="images/logo.png" alt="Logo" width="400" height="400">
+    <img src="images/logo.jpg" alt="Logo" width="400" height="400">
   </a>
   <p align="center">
    Bar.io is an easy tool that allows you to view the menu of a restaurant in real time.
