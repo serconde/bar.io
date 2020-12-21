@@ -14,9 +14,16 @@
 [![MIT License][license-shield]][license-url]
 
 <!-- PROJECT LOGO -->
+<br />
 <p align="center">
-    Bar.io is an easy tool that allows you to view the menu of a restaurant in real time.
+  <a href="https://github.com/Lemoncode/planning-poker-example">
+    <img src="images/logo.png" alt="Logo" width="400" height="400">
+  </a>
+  <p align="center">
+   Bar.io is an easy tool that allows you to view the menu of a restaurant in real time.
+  </p>
 </p>
+<br />
 
 <!-- TABLE OF CONTENTS -->
 
@@ -66,13 +73,13 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/Lemoncode/code-paster.svg?style=flat-square
-[contributors-url]: https://github.com/Lemoncode/code-paster/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Lemoncode/code-paster.svg?style=flat-square
-[forks-url]: https://github.com/Lemoncode/code-paster/network/members
-[stars-shield]: https://img.shields.io/github/stars/Lemoncode/code-paster.svg?style=flat-square
-[stars-url]: https://github.com/Lemoncode/code-paster/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Lemoncode/code-paster.svg?style=flat-square
-[issues-url]: https://github.com/Lemoncode/code-paster/issues
-[license-shield]: https://img.shields.io/github/license/Lemoncode/code-paster.svg?style=flat-square
-[license-url]: https://github.com/Lemoncode/code-paster/blob/master/LICENSE.txt
+[contributors-shield]: https://img.shields.io/github/contributors/Lemoncode/bar.io.svg?style=flat-square
+[contributors-url]: https://github.com/Lemoncode/bar.io/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Lemoncode/bar.io.svg?style=flat-square
+[forks-url]: https://github.com/Lemoncode/bar.io/network/members
+[stars-shield]: https://img.shields.io/github/stars/Lemoncode/bar.io.svg?style=flat-square
+[stars-url]: https://github.com/Lemoncode/bar.io/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Lemoncode/bar.io.svg?style=flat-square
+[issues-url]: https://github.com/Lemoncode/bar.io/issues
+[license-shield]: https://img.shields.io/github/license/Lemoncode/bar.io.svg?style=flat-square
+[license-url]: https://github.com/Lemoncode/bar.io/blob/master/LICENSE.txt
