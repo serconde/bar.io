@@ -1,4 +1,4 @@
-import { MenuCategory } from 'core/api/menu-category.model';
+import { MenuCategory } from 'core/api/menu-categories.model';
 import {
   mapMenuCategoriesToListItems,
   mapProductsToListItems,

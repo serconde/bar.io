@@ -83,7 +83,7 @@ export const ItemCardComponent: React.FunctionComponent<ItemCardComponentProps> 
             <IconButton
               aria-label={`Hacer ${visible ? 'invisible' : 'visible'} ${value}`}
               onClick={handleChangeVisibility}>
-              {visible ? <VisibilityOff /> : <Visibility />}
+              {visible ? <Visibility /> : <VisibilityOff />}
             </IconButton>
           )}
           {edit ? (

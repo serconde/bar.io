@@ -1,3 +1,3 @@
-export * from './categories-list.api';
-export * from './menu-category.model';
+export * from './menu-categories.api';
+export * from './menu-categories.model';
 export * from './product.model';

@@ -1,6 +1,6 @@
 import { ListItem, SortableListComponent } from 'common/components';
 import React from 'react';
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { Card, CardContent, CardHeader, InputLabel, MenuItem, Select } from '@material-ui/core';
 
 interface ProductListComponentProps {
   selectedCategoryId: number;
@@ -32,35 +32,38 @@ export const ProductListComponent: React.FunctionComponent<ProductListComponentP
     onChangeCategory(e.target.value);
 
   return (
-    <>
-      <FormControl>
+    <Card>
+      <CardHeader component='h1' title='Productos' />
+      <CardContent>
         <InputLabel id='categorySelectLabel'>Seleccione una categoría</InputLabel>
         <Select
           labelId='categorySelectLabel'
           id='selectCategory'
           value={!!selectedCategoryId ? selectedCategoryId : ''}
-          onChange={handleChangeCategory}>
+          onChange={handleChangeCategory}
+          fullWidth>
           {categories.map((c) => (
             <MenuItem key={c.id} value={c.id} selected={selectedCategoryId === c.id}>
               {c.value}
             </MenuItem>
           ))}
         </Select>
-      </FormControl>
-      <br></br>
-      <br></br>
-      {!!selectedCategoryId && (
-        <SortableListComponent
-          itemTypeName='productos'
-          items={products}
-          onEdit={onEditProduct}
-          onDelete={onDeleteProduct}
-          onChangeVisibility={onChangeProductVisibility}
-          onReorder={onReorderProducts}
-          onAdd={onAddProduct}
-          onCancel={onCancelProductEdit}
-        />
-      )}
-    </>
+
+        <br></br>
+        <br></br>
+        {!!selectedCategoryId && (
+          <SortableListComponent
+            itemTypeName='productos'
+            items={products}
+            onEdit={onEditProduct}
+            onDelete={onDeleteProduct}
+            onChangeVisibility={onChangeProductVisibility}
+            onReorder={onReorderProducts}
+            onAdd={onAddProduct}
+            onCancel={onCancelProductEdit}
+          />
+        )}
+      </CardContent>
+    </Card>
   );
 };

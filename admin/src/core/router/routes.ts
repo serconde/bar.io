@@ -17,15 +17,17 @@ export const switchRoutes: SwitchRoutes = {
   barInfo: '/barInfo',
   categoriesList: '/categories',
   productList: '/products',
-  editProduct: '/product/:id?',
+  editProduct: '/product/:productId?',
 };
 
 interface Routes extends Omit<SwitchRoutes, 'editProduct'> {
-  editProduct: (id?: number) => string;
+  editProduct: (productId?: number) => string;
 }
 
 export const routes: Routes = {
   ...switchRoutes,
-  editProduct: (id) =>
-    !!id ? generatePath(switchRoutes.editProduct, { id }) : generatePath(switchRoutes.editProduct),
+  editProduct: (productId?: number) =>
+    !!productId
+      ? generatePath(switchRoutes.editProduct, { productId })
+      : generatePath(switchRoutes.editProduct),
 };
