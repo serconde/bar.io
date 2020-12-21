@@ -1,4 +1,4 @@
-import { getMenuCategories, getProductById, saveProduct } from 'core/api';
+import { getMenuCategories, getPoductCategoryId, getProductById, saveProduct } from 'core/api';
 import { routes } from 'core/router';
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
@@ -14,17 +14,13 @@ import {
 import { Product } from './product.vm';
 
 interface Params {
-  categoryId: string;
   productId?: string;
 }
 
 export const EditProductContainer: React.FunctionComponent = () => {
-  const { categoryId, productId } = useParams<Params>();
+  const { productId } = useParams<Params>();
   const [categories, setCategories] = React.useState<Array<MenuCategory>>([]);
-  const [product, setProduct] = React.useState<Product>({
-    ...createEmptyProduct(),
-    categoryId: +categoryId,
-  });
+  const [product, setProduct] = React.useState<Product>(createEmptyProduct());
 
   const history = useHistory();
 
@@ -34,7 +30,7 @@ export const EditProductContainer: React.FunctionComponent = () => {
 
   const onSave = (p: Product) => {
     saveProduct(mapProductViewModelToApiModel({ ...p, visible: false }), p.categoryId).then(() =>
-      history.push(routes.productList(p.categoryId)),
+      history.push(routes.productList),
     );
   };
 
@@ -43,8 +39,15 @@ export const EditProductContainer: React.FunctionComponent = () => {
   const getProductInfo = async () => {
     if (!!productId) {
       const prod = await getProductById(+productId);
-      !!prod && setProduct({ ...mapProductApiModelToViewModel(prod), categoryId: +categoryId });
+      const prodCategoryId = !!prod ? await getPoductCategoryId(prod.id) : 0;
+
+      !!prod &&
+        setProduct({
+          ...mapProductApiModelToViewModel(prod),
+          categoryId: prodCategoryId,
+        });
     }
+
     const menuCategories = await getMenuCategories();
     setCategories(mapMenuCategoryApiModelsToViewModels(menuCategories));
   };

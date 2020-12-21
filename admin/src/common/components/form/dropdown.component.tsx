@@ -5,7 +5,7 @@ import { InputLabel } from '@material-ui/core';
 
 export const DropDownComponent: React.FunctionComponent<SelectProps> = (props) => {
   const { children } = props;
-  const [field, meta] = useField(props.name);
+  const [, meta] = useField(props.name);
   const hasError = Boolean(meta && meta.touched && meta.error);
 
   return (

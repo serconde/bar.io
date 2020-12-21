@@ -28,11 +28,11 @@ export const ProductListContainer: React.FunctionComponent = () => {
   const history = useHistory();
 
   const onAddProduct = () => {
-    history.push(routes.editProduct(selectedCategoryId));
+    history.push(routes.editProduct());
   };
 
   const onCancelProductEdit = () => {
-    history.push(routes.productList(selectedCategoryId));
+    history.push(routes.productList);
   };
 
   const onChangeCategory = (id: number) => setSelectedCategoryId(id);
@@ -54,8 +54,7 @@ export const ProductListContainer: React.FunctionComponent = () => {
     updateSelectedCategoryProducts(newProducts);
   };
 
-  const onEditProduct = (productId: number) =>
-    history.push(routes.editProduct(selectedCategoryId, productId));
+  const onEditProduct = (productId: number) => history.push(routes.editProduct(productId));
 
   const loadData = async () => {
     const menuCategories = await getMenuCategories();

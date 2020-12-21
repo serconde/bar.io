@@ -12,6 +12,11 @@ export const getProductById = (id: number): Promise<Product | false> =>
     return prods.filter((p) => p.id === id)[0] ?? false;
   })();
 
+export const getPoductCategoryId = (id: number): Promise<number> =>
+  (async () => {
+    return mockedMenuCategories.filter((c) => c.products.some((p) => p.id === p.id))[0]?.id ?? 0;
+  })();
+
 export const saveProduct = async (p: Product, categoryId?: number): Promise<void> => {
   if (p.id) {
     const product = await getProductById(p.id);
