@@ -16,7 +16,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/Lemoncode/planning-poker-example">
+  <a href="https://github.com/Lemoncode/bar.io">
     <img src="images/logo.jpg" alt="Logo" width="400" height="400">
   </a>
   <p align="center">
@@ -82,4 +82,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [issues-shield]: https://img.shields.io/github/issues/Lemoncode/bar.io.svg?style=flat-square
 [issues-url]: https://github.com/Lemoncode/bar.io/issues
 [license-shield]: https://img.shields.io/github/license/Lemoncode/bar.io.svg?style=flat-square
-[license-url]: https://github.com/Lemoncode/bar.io/blob/master/LICENSE.txt
+[license-url]: https://github.com/Lemoncode/bar.io/blob/readme/LICENSE
