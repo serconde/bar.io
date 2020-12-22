@@ -3,7 +3,7 @@ import { SortableListComponent } from 'common/components/sortable-list';
 import { ListItem } from 'common/components/sortable-list';
 import { reorder } from 'common/utils/array';
 import React from 'react';
-import { getMenuCategories } from '../../core/api';
+import { deleteCategory, getMenuCategories, saveCategory } from 'core/api';
 import { mapMenuCategoriesToListItems } from './categories-list.mapper';
 import * as classes from './categories-list.styles';
 
@@ -26,24 +26,18 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
   const onReorder = (startIndex, endIndex) =>
     setCategories(reorder(categories, startIndex, endIndex));
 
-  const onSave = (id: number, name: string) => {
-    if (id !== 0) {
-      setCategories(categories.map((c) => (c.id === id ? { ...c, value: name } : c)));
-    } else {
-      const newId =
-        categories
-          .map((c) => c.id)
-          .reduce((max, current) => (!!!max || current > max ? current : max)) + 1;
-      categories.unshift({
-        id: newId,
-        value: name,
-      });
-    }
+  const onSave = (name: string, id?: number) => {
     setEditCategoryId(false);
+    (async () => await saveCategory(name, id))();
+    (async () => await getCategories())();
   };
 
   const onEdit = (id: number) => setEditCategoryId(id);
-  const onDelete = (id: number) => setCategories(categories.filter((c) => c.id !== id));
+  const onDelete = (id: number) => {
+    (async () => await deleteCategory(id))();
+    (async () => await getCategories())();
+  };
+
   const onCancel = () => setEditCategoryId(false);
   const onAdd = () => setEditCategoryId(0);
 

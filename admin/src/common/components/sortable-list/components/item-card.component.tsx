@@ -11,13 +11,13 @@ import React from 'react';
 import * as classes from './item-card.styles';
 
 interface ItemCardComponentProps {
-  id: number;
+  id?: number;
   visible?: boolean;
   value: string;
   edit: boolean;
   onDelete: (id: number) => void;
   onEdit: (id: number) => void;
-  onSave?: (id: number, value: string) => void;
+  onSave?: (value: string, id?: number) => void;
   onCancel?: () => void;
   onChangeVisibility?: (id: number) => void;
 }
@@ -40,7 +40,7 @@ export const ItemCardComponent: React.FunctionComponent<ItemCardComponentProps> 
   const handleClickEdit = () => onEdit(id);
   const handleClickDelete = () => onDelete(id);
   const handleClickSave = () => {
-    onSave(id, itemValue.trim());
+    onSave(itemValue.trim(), id);
     itesetItemValue(itemValue.trim());
   };
   const handleClickCancel = () => {

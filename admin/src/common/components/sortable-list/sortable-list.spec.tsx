@@ -26,7 +26,7 @@ describe('SortableListComponent test', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {
@@ -61,7 +61,7 @@ describe('SortableListComponent test', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {
@@ -95,7 +95,7 @@ describe('SortableListComponent test', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {
@@ -129,7 +129,7 @@ describe('SortableListComponent test', () => {
       onDelete: (id: number) => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onReorder: (startIndex: number, endIndex: number) => {

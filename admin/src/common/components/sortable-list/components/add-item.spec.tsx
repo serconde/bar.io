@@ -10,7 +10,7 @@ describe('AddItemComponent tests', () => {
       onCancel: () => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onAdd: () => {
@@ -38,7 +38,7 @@ describe('AddItemComponent tests', () => {
       onCancel: () => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onAdd: () => {
@@ -66,7 +66,7 @@ describe('AddItemComponent tests', () => {
       onCancel: () => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onAdd: () => {
@@ -88,7 +88,7 @@ describe('AddItemComponent tests', () => {
       onCancel: () => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onAdd: () => {
@@ -110,7 +110,7 @@ describe('AddItemComponent tests', () => {
       onCancel: () => {
         return;
       },
-      onSave: (id: number, value: string) => {
+      onSave: (value: string, id?: number) => {
         return;
       },
       onAdd: jest.fn(),
@@ -146,7 +146,7 @@ describe('AddItemComponent tests', () => {
     userEvent.click(saveButton);
 
     // Assert
-    expect(props.onSave).toHaveBeenCalledWith(0, 'Test');
+    expect(props.onSave).toHaveBeenCalledWith('Test', 0);
   });
   it('should call onCancel when clicking the cancel button', () => {
     // Arrange
