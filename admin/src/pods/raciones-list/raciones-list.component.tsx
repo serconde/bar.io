@@ -1,4 +1,13 @@
 import React from 'react';
+//Material ui
+import { Card, CardContent, CardHeader } from '@material-ui/core';
+
+//Componentes
+import { SortableListComponent } from 'common/components/sortable-list';
+import { ListItem } from 'common/components/sortable-list';
+
+//CSS
+import * as classes from './raciones-list.styles';
 
 interface Props {
   raciones: ListItem[];
@@ -11,33 +20,28 @@ interface Props {
   onAdd: () => void;
 }
 
-//Material ui
-import { Card, CardContent, CardHeader } from '@material-ui/core';
-
-//Components
-import { SortableListComponent } from 'common/components/sortable-list';
-import { ListItem } from 'common/components/sortable-list';
-
 export const RacionesListComponent: React.FunctionComponent<Props> = (props) => {
   const { raciones, editID, onSave, onEdit, onDelete, onReorder, onCancel, onAdd } = props;
   return (
     <>
-      <Card>
-        <CardHeader component='h1' title='Raciones' />
-        <CardContent>
-          <SortableListComponent
-            items={raciones}
-            itemTypeName='raciones'
-            editItemId={editID}
-            onSave={onSave}
-            onEdit={onEdit}
-            onDelete={onDelete}
-            onReorder={onReorder}
-            onCancel={onCancel}
-            onAdd={onAdd}
-          />
-        </CardContent>
-      </Card>
+      <div className={classes.container}>
+        <Card>
+          <CardHeader component='h1' title='Raciones' />
+          <CardContent>
+            <SortableListComponent
+              items={raciones}
+              itemTypeName='raciones'
+              editItemId={editID}
+              onSave={onSave}
+              onEdit={onEdit}
+              onDelete={onDelete}
+              onReorder={onReorder}
+              onCancel={onCancel}
+              onAdd={onAdd}
+            />
+          </CardContent>
+        </Card>
+      </div>
     </>
   );
 };
