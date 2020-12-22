@@ -31,7 +31,7 @@ export const MenuContainer: React.FunctionComponent = () => {
       },
       {
         title: 'Raciones',
-        linkTo: '#', // No link defined
+        linkTo: routes.racionesList,
         icon: LocalOfferIcon,
       },
     ],

@@ -8,6 +8,7 @@ interface SwitchRoutes {
   categoriesList: string;
   productList: string;
   editProduct: string;
+  racionesList: string;
 }
 
 export const switchRoutes: SwitchRoutes = {
@@ -18,6 +19,7 @@ export const switchRoutes: SwitchRoutes = {
   categoriesList: '/categories',
   productList: '/products',
   editProduct: '/product/:productId?',
+  racionesList: '/raciones',
 };
 
 interface Routes extends Omit<SwitchRoutes, 'editProduct'> {
