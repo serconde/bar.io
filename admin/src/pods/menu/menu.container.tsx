@@ -8,6 +8,7 @@ import { DashboardItemProps } from 'common/components';
 import InfoIcon from '@material-ui/icons/Info';
 import FolderIcon from '@material-ui/icons/Folder';
 import RestaurantMenuIcon from '@material-ui/icons/RestaurantMenu';
+import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 import { routes } from 'core/router';
 
 export const MenuContainer: React.FunctionComponent = () => {
@@ -27,6 +28,11 @@ export const MenuContainer: React.FunctionComponent = () => {
         title: 'Productos',
         linkTo: routes.productList,
         icon: RestaurantMenuIcon,
+      },
+      {
+        title: 'Raciones',
+        linkTo: '#', // No link defined
+        icon: LocalOfferIcon,
       },
     ],
     [],
