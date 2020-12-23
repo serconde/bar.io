@@ -1,10 +1,10 @@
-import { ProductSizeType } from './product-size.model';
+import { ProductPortionType } from './product-portion.model';
 
-export const mockedProductSizeTypes: Array<ProductSizeType> = [
+export const mockedProductPortionTypes: Array<ProductPortionType> = [
   {
     id: 1,
     name: 'Raciones',
-    sizes: [
+    portions: [
       {
         id: 1,
         name: 'Tapa',
@@ -22,7 +22,7 @@ export const mockedProductSizeTypes: Array<ProductSizeType> = [
   {
     id: 2,
     name: 'Desayunos',
-    sizes: [
+    portions: [
       {
         id: 4,
         name: 'Pulga',

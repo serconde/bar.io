@@ -1,7 +1,7 @@
 import { mockedMenuCategories } from './menu-categories.mock-data';
 import { MenuCategory } from './menu-categories.model';
-import { ProductSize, ProductSizeType } from './product-size.model';
-import { mockedProductSizeTypes } from './product-sizes.mock-data';
+import { ProductPortionType } from './product-portion.model';
+import { mockedProductPortionTypes } from './product-portions.mock-data';
 import { Product } from './product.model';
 
 export const getMenuCategories = (): Promise<Array<MenuCategory>> =>
@@ -65,33 +65,33 @@ export const saveProduct = async (p: Product, categoryId?: number): Promise<void
   }
 };
 
-export const getProductSizeTypeById = (id: number): Promise<ProductSizeType> =>
-  (async () => mockedProductSizeTypes.find((pst) => pst.id === id))();
+export const getProductPortionTypeById = (id: number): Promise<ProductPortionType> =>
+  (async () => mockedProductPortionTypes.find((ppt) => ppt.id === id))();
 
-export const saveProductSize = async (
+export const saveProductPortion = async (
   name: string,
   typeId: number,
   id?: number,
 ): Promise<boolean> => {
   if (!!id) {
-    const productSize = mockedProductSizeTypes
-      .find((pst) => pst.id === typeId)
-      ?.sizes.find((ps) => ps.id === id);
-    if (!!productSize) {
-      productSize.name = name;
+    const productPortion = mockedProductPortionTypes
+      .find((ppt) => ppt.id === typeId)
+      ?.portions.find((ps) => ps.id === id);
+    if (!!productPortion) {
+      productPortion.name = name;
       return new Promise(() => true);
     } else {
       return new Promise(() => false);
     }
   } else {
     const newId =
-      mockedProductSizeTypes
-        .map((ps) => ps.sizes.map((s) => s.id))
+      mockedProductPortionTypes
+        .map((ps) => ps.portions.map((s) => s.id))
         .reduce((acc, val) => acc.concat(val))
         .reduce((max, current) => (!!!max || current > max ? current : max)) + 1;
-    mockedProductSizeTypes
-      .find((pst) => pst.id === typeId)
-      ?.sizes.unshift({
+    mockedProductPortionTypes
+      .find((ppt) => ppt.id === typeId)
+      ?.portions.unshift({
         id: newId,
         name: name,
       });
@@ -100,11 +100,11 @@ export const saveProductSize = async (
   }
 };
 
-export const deleteProductSize = (typeId: number, id: number): Promise<void> =>
+export const deleteProductPortion = (typeId: number, id: number): Promise<void> =>
   (async () => {
-    const sizes = mockedProductSizeTypes.find((pst) => pst.id === typeId).sizes;
-    sizes.splice(
-      sizes.findIndex((ps) => ps.id === id),
+    const portions = mockedProductPortionTypes.find((ppt) => ppt.id === typeId).portions;
+    portions.splice(
+      portions.findIndex((ps) => ps.id === id),
       1,
     );
   })();

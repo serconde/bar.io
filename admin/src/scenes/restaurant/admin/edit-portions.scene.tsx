@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
 import { CenteredLayout } from 'layouts';
-import { EditSizesContainer } from 'pods/edit-sizes';
+import { EditPortionsContainer } from 'pods/edit-portions';
 
-export const ProductSizesScene: FC = () => {
+export const EditPortionsScene: FC = () => {
   return (
     <>
       <CenteredLayout>
-        <EditSizesContainer />
+        <EditPortionsContainer />
       </CenteredLayout>
     </>
   );
 };
+
