@@ -1,5 +1,7 @@
 import { mockedMenuCategories } from './menu-categories.mock-data';
 import { MenuCategory } from './menu-categories.model';
+import { ProductPortionType } from './product-portion.model';
+import { mockedProductPortionTypes } from './product-portions.mock-data';
 import { Product } from './product.model';
 
 export const getMenuCategories = (): Promise<Array<MenuCategory>> =>
@@ -9,17 +11,17 @@ export const getProductById = (id: number): Promise<Product | false> =>
   (async () => {
     let prods: Array<Product> = [];
     mockedMenuCategories.map((c) => (prods = prods.concat(c.products)));
-    return prods.filter((p) => p.id === id)[0] ?? false;
+    return prods.find((p) => p.id === id) ?? false;
   })();
 
 export const getPoductCategoryId = (id: number): Promise<number> =>
   (async () => {
-    return mockedMenuCategories.filter((c) => c.products.some((p) => p.id === id))[0]?.id ?? 0;
+    return mockedMenuCategories.find((c) => c.products.some((p) => p.id === id))?.id ?? 0;
   })();
 
 export const saveCategory = async (name: string, id?: number): Promise<boolean> => {
   if (!!id) {
-    const category = mockedMenuCategories.filter((c) => c.id === id)[0];
+    const category = mockedMenuCategories.find((c) => c.id === id);
     if (!!category) {
       category.name = name;
       return new Promise(() => true);
@@ -62,6 +64,50 @@ export const saveProduct = async (p: Product, categoryId?: number): Promise<void
     !!categories && categories[0].products.push(p);
   }
 };
+
+export const getProductPortionTypeById = (id: number): Promise<ProductPortionType> =>
+  (async () => mockedProductPortionTypes.find((ppt) => ppt.id === id))();
+
+export const saveProductPortion = async (
+  name: string,
+  typeId: number,
+  id?: number,
+): Promise<boolean> => {
+  if (!!id) {
+    const productPortion = mockedProductPortionTypes
+      .find((ppt) => ppt.id === typeId)
+      ?.portions.find((ps) => ps.id === id);
+    if (!!productPortion) {
+      productPortion.name = name;
+      return new Promise(() => true);
+    } else {
+      return new Promise(() => false);
+    }
+  } else {
+    const newId =
+      mockedProductPortionTypes
+        .map((ps) => ps.portions.map((s) => s.id))
+        .reduce((acc, val) => acc.concat(val))
+        .reduce((max, current) => (!!!max || current > max ? current : max)) + 1;
+    mockedProductPortionTypes
+      .find((ppt) => ppt.id === typeId)
+      ?.portions.unshift({
+        id: newId,
+        name: name,
+      });
+
+    return new Promise(() => true);
+  }
+};
+
+export const deleteProductPortion = (typeId: number, id: number): Promise<void> =>
+  (async () => {
+    const portions = mockedProductPortionTypes.find((ppt) => ppt.id === typeId).portions;
+    portions.splice(
+      portions.findIndex((ps) => ps.id === id),
+      1,
+    );
+  })();
 
 const getNewProductId = (): number => {
   let prods: Array<Product> = [];
