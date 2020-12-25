@@ -9,6 +9,7 @@ import {
   LoginScene,
   ProductListScene,
   ProductPortionListScene,
+  EditPortionsScene,
 } from 'scenes/restaurant/admin';
 
 export const RouterComponent: React.FunctionComponent = () => {
@@ -26,6 +27,7 @@ export const RouterComponent: React.FunctionComponent = () => {
           path={switchRoutes.productPortionList}
           component={ProductPortionListScene}
         />
+        <Route exact={true} path={switchRoutes.editPortions} component={EditPortionsScene} />
       </Switch>
     </Router>
   );

@@ -6,3 +6,4 @@ export * from './dashboard.scene';
 export * from './edit-product.scene';
 export * from './product-list.scene';
 export * from './product-portion-list.scene';
+export * from './edit-portions.scene';
