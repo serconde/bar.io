@@ -5,4 +5,4 @@ export * from './categories-list.scene';
 export * from './dashboard.scene';
 export * from './edit-product.scene';
 export * from './product-list.scene';
-export * from './raciones-list-scene';
+export * from './product-portion-list.scene';

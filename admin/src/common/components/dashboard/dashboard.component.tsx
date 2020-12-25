@@ -4,7 +4,7 @@ import { cx } from 'emotion';
 //VM
 import { DashboardItemProps } from './dashboard.vm';
 
-//Componente
+//Component
 import { ItemComponent, ClassesProps } from './components';
 
 //CSS

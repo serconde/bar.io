@@ -2,15 +2,15 @@ import React from 'react';
 //Material ui
 import { Card, CardContent, CardHeader } from '@material-ui/core';
 
-//Componentes
+//Components
 import { SortableListComponent } from 'common/components/sortable-list';
 import { ListItem } from 'common/components/sortable-list';
 
 //CSS
-import * as classes from './raciones-list.styles';
+import * as classes from './product-portion-list.styles';
 
 interface Props {
-  raciones: ListItem[];
+  listItem: ListItem[];
   editID: number | false;
   onSave: (value: string, id: number) => void;
   onEdit: (id: number) => void;
@@ -20,8 +20,8 @@ interface Props {
   onAdd: () => void;
 }
 
-export const RacionesListComponent: React.FunctionComponent<Props> = (props) => {
-  const { raciones, editID, onSave, onEdit, onDelete, onReorder, onCancel, onAdd } = props;
+export const ProductPortionListComponent: React.FunctionComponent<Props> = (props) => {
+  const { listItem, editID, onSave, onEdit, onDelete, onReorder, onCancel, onAdd } = props;
   return (
     <>
       <div className={classes.container}>
@@ -29,7 +29,7 @@ export const RacionesListComponent: React.FunctionComponent<Props> = (props) => 
           <CardHeader component='h1' title='Raciones' />
           <CardContent>
             <SortableListComponent
-              items={raciones}
+              items={listItem}
               itemTypeName='raciones'
               editItemId={editID}
               onSave={onSave}
