@@ -8,6 +8,7 @@ interface SwitchRoutes {
   categoriesList: string;
   productList: string;
   editProduct: string;
+  productPortionList: string;
   editPortions: string;
 }
 
@@ -19,6 +20,7 @@ export const switchRoutes: SwitchRoutes = {
   categoriesList: '/categories',
   productList: '/products',
   editProduct: '/product/:productId?',
+  productPortionList: '/productPortionList',
   editPortions: '/editPortions/:typeId',
 };
 

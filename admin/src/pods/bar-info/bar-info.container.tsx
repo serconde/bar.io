@@ -12,7 +12,7 @@ import { BarInfo, createEmptyBarInfo } from './bar-info.vm';
 //Mapper
 import { mapBarInfoFromApiToVm } from './bar-info.mappers';
 
-//Componentes
+//Components
 import { BarInfoComponent } from './bar-info.component';
 
 export const BarInfoContainer: React.FunctionComponent = () => {

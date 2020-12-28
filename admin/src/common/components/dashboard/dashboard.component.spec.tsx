@@ -5,7 +5,7 @@ import { renderWithRouter } from './../test/';
 //VM
 import { DashboardItemProps } from './dashboard.vm';
 
-//Componente
+//Component
 import { DashboardComponent } from './dashboard.component';
 
 //Material ui

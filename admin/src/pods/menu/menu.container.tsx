@@ -1,6 +1,6 @@
 import React from 'react';
 
-//Componentes
+//Components
 import { MenuComponent } from './menu.component';
 import { DashboardItemProps } from 'common/components';
 
@@ -31,7 +31,7 @@ export const MenuContainer: React.FunctionComponent = () => {
       },
       {
         title: 'Raciones',
-        linkTo: '#', // No link defined
+        linkTo: routes.productPortionList,
         icon: LocalOfferIcon,
       },
     ],
