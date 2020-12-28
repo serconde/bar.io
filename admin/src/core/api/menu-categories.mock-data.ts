@@ -9,19 +9,48 @@ export const mockedMenuCategories: Array<MenuCategory> = [
         id: 1,
         name: 'Jamón Ibérico de Bellota',
         visible: true,
-        price: 12,
+        portionTypeId: 2,
+        portions: [
+          {
+            id: 1,
+            price: 0,
+          },
+          {
+            id: 2,
+            price: 6,
+          },
+          {
+            id: 3,
+            price: 12,
+          },
+        ],
       },
       {
         id: 2,
         name: 'Queso Manchego',
+        portionTypeId: 2,
         visible: false,
-        price: 9,
+        portions: [
+          {
+            id: 1,
+            price: 2.5,
+          },
+          {
+            id: 2,
+            price: 5,
+          },
+          {
+            id: 3,
+            price: 10,
+          },
+        ],
       },
       {
         id: 3,
         name: 'Alcachofas con jamón',
         visible: true,
-        price: 9.5,
+        portionTypeId: 1,
+        portions: [{ id: 1, price: 6 }],
       },
     ],
   },

@@ -1,6 +1,5 @@
 import { ValidationSchema, Validators } from '@lemoncode/fonk';
 import { createFormikValidation } from '@lemoncode/fonk-formik';
-import { minNumber } from '@lemoncode/fonk-min-number-validator';
 
 const validationSchema: ValidationSchema = {
   field: {
@@ -13,13 +12,6 @@ const validationSchema: ValidationSchema = {
         validator: Validators.minLength,
         customArgs: { length: 3 },
         message: 'El nombre debe tener al menos 3 caracteres',
-      },
-    ],
-    price: [
-      {
-        validator: minNumber.validator,
-        customArgs: { minValue: 0.1 },
-        message: 'El precio debe ser mayor que 0',
       },
     ],
     categoryId: [

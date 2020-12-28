@@ -25,15 +25,15 @@ export const switchRoutes: SwitchRoutes = {
 };
 
 interface Routes extends Omit<SwitchRoutes, 'editProduct' | 'editPortions'> {
-  editProduct: (productId?: number) => string;
-  editPortions: (typeId: number) => string;
+  editProduct: (productId?: string) => string;
+  editPortions: (typeId: string) => string;
 }
 
 export const routes: Routes = {
   ...switchRoutes,
-  editProduct: (productId?: number) =>
+  editProduct: (productId?: string) =>
     !!productId
       ? generatePath(switchRoutes.editProduct, { productId })
       : generatePath(switchRoutes.editProduct),
-  editPortions: (typeId: number) => generatePath(switchRoutes.editPortions, { typeId }),
+  editPortions: (typeId: string) => generatePath(switchRoutes.editPortions, { typeId }),
 };

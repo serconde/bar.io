@@ -5,7 +5,13 @@ import { reorder } from 'common/utils/array';
 import React from 'react';
 import * as classes from './edit-portions.styles';
 import { mapProductPortionsToListItems } from './edit-portions.mapper';
-import { deleteProductPortion, getProductPortionTypeById, saveProductPortion } from 'core/api';
+import {
+  deleteProductPortion,
+  getProductPortionTypeById,
+  ProductPortion,
+  saveProductPortion,
+  saveProductPortionType,
+} from 'core/api';
 import { useParams } from 'react-router-dom';
 
 interface Params {
@@ -13,7 +19,8 @@ interface Params {
 }
 
 export const EditPortionsContainer: React.FunctionComponent = () => {
-  const [productPortions, setProductPortions] = React.useState<Array<ListItem>>([]);
+  const [productPortions, setProductPortions] = React.useState<Array<ProductPortion>>([]);
+  const [listItems, setListItems] = React.useState<Array<ListItem>>([]);
   const [editProductPortionId, setEditProductPortionId] = React.useState<number | false>(false);
   const [productPortionType, setProductPortionType] = React.useState<string>('');
   const { typeId } = useParams<Params>();
@@ -21,7 +28,8 @@ export const EditPortionsContainer: React.FunctionComponent = () => {
   const getProductPortionType = async () => {
     const productPortionType = await getProductPortionTypeById(+typeId);
     setProductPortionType(productPortionType.name);
-    setProductPortions(mapProductPortionsToListItems(productPortionType.portions));
+    setProductPortions(productPortionType.portions);
+    setListItems(mapProductPortionsToListItems(productPortionType.portions));
   };
 
   React.useEffect(() => {
@@ -31,8 +39,11 @@ export const EditPortionsContainer: React.FunctionComponent = () => {
     loadProductPortions();
   }, []);
 
-  const onReorder = (startIndex, endIndex) =>
-    setProductPortions(reorder(productPortions, startIndex, endIndex));
+  const onReorder = async (startIndex, endIndex) => {
+    const reorderedPortions = reorder(productPortions, startIndex, endIndex);
+    setProductPortions(reorderedPortions);
+    await saveProductPortionType(+typeId, reorderedPortions);
+  };
 
   const onSave = (name: string, id?: number) => {
     setEditProductPortionId(false);
@@ -55,7 +66,7 @@ export const EditPortionsContainer: React.FunctionComponent = () => {
         <CardHeader component='h1' title={`Editar ${productPortionType}`} />
         <CardContent>
           <SortableListComponent
-            items={productPortions}
+            items={listItems}
             itemTypeName={`${productPortionType}`}
             editItemId={editProductPortionId}
             onSave={onSave}

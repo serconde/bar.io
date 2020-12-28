@@ -1,9 +1,5 @@
 import { MenuCategory } from 'core/api/menu-categories.model';
-import {
-  mapMenuCategoriesToListItems,
-  mapProductsToListItems,
-  mapProductToListItem,
-} from './categories-list.mapper';
+import { mapMenuCategoriesToListItems, mapProductsToListItems } from './categories-list.mapper';
 import { ListItem } from 'common/components/sortable-list/list-item.vm';
 import { Product } from 'core/api/product.model';
 import { formatToEuro } from 'common/utils';
@@ -72,15 +68,15 @@ describe('Categories List mapper tests', () => {
   it('should map to the expected item list when passing valid products', () => {
     // Arrange
     const products: Array<Product> = [
-      { id: 1, name: 'Flamenquín', visible: true, price: 3 },
-      { id: 2, name: 'Salmorejo', visible: false, price: 5 },
-      { id: 3, name: 'Tortilla de patata', visible: true, price: 6 },
+      { id: 1, name: 'Flamenquín', visible: true, portionTypeId: 0, portions: []},
+      { id: 2, name: 'Salmorejo', visible: false, portionTypeId: 0, portions: []},
+      { id: 3, name: 'Tortilla de patata', visible: true, portionTypeId: 0, portions: []},
     ];
 
     const expectedListItems: Array<ListItem> = [
-      { id: 1, value: `Flamenquín\n(${formatToEuro(3)})`, visible: true },
-      { id: 2, value: `Salmorejo\n(${formatToEuro(5)})`, visible: false },
-      { id: 3, value: `Tortilla de patata\n(${formatToEuro(6)})`, visible: true },
+      { id: 1, value: `Flamenquín`, visible: true },
+      { id: 2, value: `Salmorejo`, visible: false },
+      { id: 3, value: `Tortilla de patata`, visible: true },
     ];
 
     // Act

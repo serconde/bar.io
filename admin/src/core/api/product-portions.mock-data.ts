@@ -1,8 +1,9 @@
 import { ProductPortionType } from './product-portion.model';
 
 export const mockedProductPortionTypes: Array<ProductPortionType> = [
+  { id: 1, name: 'Única', portions: [{ id: 1, name: 'Única' }] },
   {
-    id: 1,
+    id: 2,
     name: 'Raciones',
     portions: [
       {
@@ -20,23 +21,23 @@ export const mockedProductPortionTypes: Array<ProductPortionType> = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     name: 'Desayunos',
     portions: [
       {
-        id: 4,
+        id: 1,
         name: 'Pulga',
       },
       {
-        id: 5,
+        id: 2,
         name: 'Pitufo',
       },
       {
-        id: 6,
+        id: 3,
         name: 'Mollete',
       },
       {
-        id: 7,
+        id: 4,
         name: 'Viena',
       },
     ],
