@@ -1,7 +1,6 @@
 import { MenuCategory, Product } from 'core/api';
 import { ListItem } from 'common/components/sortable-list/list-item.vm';
 import { createEmptyListItem } from 'common/components/sortable-list/list-item.vm';
-import { formatToEuro } from 'common/utils';
 
 export const mapMenuCategoriesToListItems = (categories: Array<MenuCategory>): Array<ListItem> =>
   !!categories ? categories.map((c) => mapMenuCategoryToListItem(c)) : [];
@@ -16,7 +15,7 @@ export const mapProductToListItem = (product: Product): ListItem =>
   !!product
     ? {
         id: product.id,
-        value: `${product.name}\n(${formatToEuro(product.price)})`,
+        value: product.name,
         visible: product.visible,
       }
     : { ...createEmptyListItem(), visible: true };

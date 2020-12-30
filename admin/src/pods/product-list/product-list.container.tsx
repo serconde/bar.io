@@ -1,4 +1,4 @@
-import { getMenuCategories } from 'core/api';
+import { getMenuCategories, saveProducts } from 'core/api';
 import { routes } from 'core/router';
 import {
   mapMenuCategoriesToListItems,
@@ -43,9 +43,11 @@ export const ProductListContainer: React.FunctionComponent = () => {
     updateSelectedCategoryProducts(newProducts);
   };
 
-  const onReorderProducts = (startIndex: number, endIndex: number) => {
+  const onReorderProducts = async (startIndex: number, endIndex: number) => {
     const products = getProductsByCategoryId(selectedCategoryId);
-    updateSelectedCategoryProducts(reorder(products, startIndex, endIndex));
+    const newProducts = reorder(products, startIndex, endIndex);    
+    updateSelectedCategoryProducts(newProducts);
+    await saveProducts(selectedCategoryId, newProducts);
   };
 
   const onDeleteProduct = (id: number) => {
@@ -54,7 +56,7 @@ export const ProductListContainer: React.FunctionComponent = () => {
     updateSelectedCategoryProducts(newProducts);
   };
 
-  const onEditProduct = (productId: number) => history.push(routes.editProduct(productId));
+  const onEditProduct = (productId: number) => history.push(routes.editProduct(`${productId}`));
 
   const loadData = async () => {
     const menuCategories = await getMenuCategories();

@@ -1,19 +1,20 @@
 import { Card, CardContent, CardHeader } from '@material-ui/core';
-import { SortableListComponent } from 'common/components/sortable-list';
-import { ListItem } from 'common/components/sortable-list';
+import { ListItem, SortableListComponent } from 'common/components/sortable-list';
 import { reorder } from 'common/utils/array';
 import React from 'react';
-import { deleteCategory, getMenuCategories, saveCategory } from 'core/api';
+import { deleteCategory, getMenuCategories, MenuCategory, saveCategories, saveCategory } from 'core/api';
 import { mapMenuCategoriesToListItems } from './categories-list.mapper';
 import * as classes from './categories-list.styles';
 
 export const CategoriesListContainer: React.FunctionComponent = () => {
-  const [categories, setCategories] = React.useState<Array<ListItem>>([]);
+  const [categories, setCategories] = React.useState<Array<MenuCategory>>([]);
+  const [listItems, setListItems] = React.useState<Array<ListItem>>([]);
   const [editCategoryId, setEditCategoryId] = React.useState<number | false>(false);
 
   const getCategories = async () => {
     const menuCategories = await getMenuCategories();
-    setCategories(mapMenuCategoriesToListItems(menuCategories));
+    setCategories(menuCategories);
+    setListItems(mapMenuCategoriesToListItems(menuCategories));
   };
 
   React.useEffect(() => {
@@ -23,8 +24,12 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
     loadCategories();
   }, []);
 
-  const onReorder = (startIndex, endIndex) =>
-    setCategories(reorder(categories, startIndex, endIndex));
+  const onReorder = async (startIndex, endIndex) => {
+    const reorderedCategories = reorder(categories, startIndex, endIndex);
+    setCategories(reorderedCategories);    
+    setListItems(mapMenuCategoriesToListItems(reorderedCategories));
+    await saveCategories(reorderedCategories);
+  }
 
   const onSave = (name: string, id?: number) => {
     setEditCategoryId(false);
@@ -47,7 +52,7 @@ export const CategoriesListContainer: React.FunctionComponent = () => {
         <CardHeader component='h1' title='Categorías' />
         <CardContent>
           <SortableListComponent
-            items={categories}
+            items={listItems}
             itemTypeName='categorías'
             editItemId={editCategoryId}
             onSave={onSave}
