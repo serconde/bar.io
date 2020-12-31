@@ -16,19 +16,16 @@ describe('Menu mapper tests', () => {
           name: 'Entrantes',
           products: [
             {
-              id: 1,
               name: 'Chorizo criollo',
-              price: 5,
+              portions: [{ name: 'Única', price: 5.5 }],
             },
             {
-              id: 2,
               name: 'Queso provolone',
-              price: 4,
+              portions: [{ name: 'Única', price: 5.5 }],
             },
             {
-              id: 3,
               name: 'Jamón ibérico',
-              price: 18,
+              portions: [{ name: 'Única', price: 0 }],
             },
           ],
         },
@@ -46,26 +43,19 @@ describe('Menu mapper tests', () => {
           name: 'Entrantes',
           products: [
             {
-              id: 1,
               name: 'Chorizo criollo',
-              price: formatToEuros(5),
+              portions: [{ name: 'Única', price: formatToEuros(5.5) }],
             },
             {
-              id: 2,
               name: 'Queso provolone',
-              price: formatToEuros(4),
-            },
-            {
-              id: 3,
-              name: 'Jamón ibérico',
-              price: formatToEuros(18),
+              portions: [{ name: 'Única', price: formatToEuros(5.5) }],
             },
           ],
         },
       ],
     };
 
-    // Act
+    // Act    
     const menuViewModel = mapMenuApiModelToViewModel(menuApiModel);
 
     // Assert

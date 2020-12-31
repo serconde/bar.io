@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { MenuComponent } from './menu.component';
-import { formatToEuros } from 'common';
 
 describe('MenuComponent tests', () => {
   it('should render the expected subcomponents', () => {
@@ -17,19 +16,16 @@ describe('MenuComponent tests', () => {
           name: 'Entrantes',
           products: [
             {
-              id: 1,
               name: 'Chorizo criollo',
-              price: formatToEuros(5),
+              portions: [{ name: 'Única', price: '5,50 €' }],
             },
             {
-              id: 2,
               name: 'Queso provolone',
-              price: formatToEuros(4),
+              portions: [{ name: 'Única', price: '5,50 €' }],
             },
             {
-              id: 3,
               name: 'Jamón ibérico',
-              price: formatToEuros(18),
+              portions: [{ name: 'Única', price: '5,50 €' }],
             },
           ],
         },
@@ -43,7 +39,7 @@ describe('MenuComponent tests', () => {
     );
     const menuCategories = props.categories
       .map((c) => c.name)
-      .map((name) => screen.getByLabelText(name));
+      .map((name) => screen.getByText(name));
 
     // Assert
     expect(headerTelephone).toBeInTheDocument();
