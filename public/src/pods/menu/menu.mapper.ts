@@ -30,7 +30,8 @@ export const mapMenuCategoryApiModelToViewModel = (
 
 export const mapProductApiModelsToViewModels = (
   products: Array<apiModel.Product>,
-): Array<viewModel.Product> => products?.map((p) => mapProductApiModelToViewModel(p)).filter(p => p.portions.length > 0) ?? [];
+): Array<viewModel.Product> =>
+  products?.map((p) => mapProductApiModelToViewModel(p)).filter((p) => p.portions.length > 0) ?? [];
 
 export const mapProductApiModelToViewModel = (product: apiModel.Product): viewModel.Product => ({
   ...product,
@@ -40,9 +41,17 @@ export const mapProductApiModelToViewModel = (product: apiModel.Product): viewMo
 const mapPortionApiModelsToPortionViewModels = (
   portions: Array<apiModel.Portion>,
 ): Array<viewModel.Portion> =>
-  portions?.filter((p) => !!p.price).map((p) => mapPortionApiModelToPortionViewModel(p)) ?? [];
+  portions
+    ?.filter((p) => !!p.price)
+    .map((p) => mapPortionApiModelToPortionViewModel(p))
+    .filter((p) => !!p) as Array<viewModel.Portion> ?? [];
 
-const mapPortionApiModelToPortionViewModel = (portion: apiModel.Portion): viewModel.Portion => ({
-  name: portion.name,
-  price: formatToEuros(portion.price),
-});
+const mapPortionApiModelToPortionViewModel = (
+  portion: apiModel.Portion,
+): viewModel.Portion | false =>
+  !!portion
+    ? {
+        name: portion.name,
+        price: formatToEuros(portion.price),
+      }
+    : false;
