@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { formatToEuros } from 'common';
 import { SubmenuCategoryComponent } from './submenu-category.component';
 
 describe('SubmenuCategoryComponentTest', () => {
@@ -9,29 +8,28 @@ describe('SubmenuCategoryComponentTest', () => {
     const props = {
       products: [
         {
-          id: 1,
           name: 'Chorizo criollo',
-          price: formatToEuros(5),
+          portions: [{name: 'Única', price: '5,00 €'}]
         },
         {
-          id: 2,
           name: 'Queso provolone',
-          price: formatToEuros(4),
+          portions: [{name: 'Única', price: '5,00 €'}]
         },
         {
-          id: 3,
           name: 'Jamón ibérico',
-          price: formatToEuros(18),
+          portions: [{name: 'Única', price: '5,00 €'}]
         },
       ],
     };
 
     // Act
-    render(<SubmenuCategoryComponent {...props} />);
-    const productItems = props.products.map((d) => screen.getByText(d.name));
+    render(<SubmenuCategoryComponent categoryIndex={0} {...props} />);
+    const products = props.products.map((p) => screen.getByText(p.name));
+    const prices = screen.getAllByText('5,00 €');
 
     // Assert
-    expect(productItems.length).toBe(props.products.length);
+    expect(products.length).toBe(props.products.length);
+    expect(prices.length).toBe(props.products.length);
   });
 
   it('should not show anything when passing and empty list', () => {
@@ -41,7 +39,7 @@ describe('SubmenuCategoryComponentTest', () => {
     };
 
     // Act
-    const { container } = render(<SubmenuCategoryComponent {...props} />);
+    const { container } = render(<SubmenuCategoryComponent categoryIndex={0} {...props} />);
     // Assert
 
     expect(container).toHaveTextContent('');
@@ -54,7 +52,7 @@ describe('SubmenuCategoryComponentTest', () => {
     };
 
     // Act
-    const { container } = render(<SubmenuCategoryComponent {...props} />);
+    const { container } = render(<SubmenuCategoryComponent categoryIndex={0} {...props} />);
     // Assert
 
     expect(container).toHaveTextContent('');
@@ -67,7 +65,7 @@ describe('SubmenuCategoryComponentTest', () => {
     };
 
     // Act
-    const { container } = render(<SubmenuCategoryComponent {...props} />);
+    const { container } = render(<SubmenuCategoryComponent categoryIndex={0} {...props} />);
     // Assert
 
     expect(container).toHaveTextContent('');

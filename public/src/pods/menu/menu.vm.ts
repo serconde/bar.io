@@ -15,7 +15,11 @@ export interface MenuCategory {
 }
 
 export interface Product {
-  id: number;
+  name: string;
+  portions: Array<Portion>;
+}
+
+export interface Portion {
   name: string;
   price: string;
 }

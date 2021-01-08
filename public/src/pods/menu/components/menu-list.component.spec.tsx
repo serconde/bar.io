@@ -14,17 +14,17 @@ describe('MenuListComponentTest', () => {
             {
               id: 1,
               name: 'Chorizo criollo',
-              price: formatToEuros(5),
+              portions: [{name: 'Única', price: '5,00 €'}],
             },
             {
               id: 2,
               name: 'Queso provolone',
-              price: formatToEuros(4),
+              portions: [{name: 'Única', price: '5,00 €'}],
             },
             {
               id: 3,
               name: 'Jamón ibérico',
-              price: formatToEuros(18),
+              portions: [{name: 'Única', price: '5,00 €'}],
             },
           ],
         },
@@ -34,17 +34,17 @@ describe('MenuListComponentTest', () => {
             {
               id: 12,
               name: 'Flamenquín cordobés',
-              price: formatToEuros(7.5),
+              portions: [{name: 'Única', price: '5,00 €'}],
             },
             {
               id: 13,
               name: 'Carrillada ibérica al Predro Ximénez',
-              price: formatToEuros(9.5),
+              portions: [{name: 'Única', price: '5,00 €'}],
             },
             {
               id: 14,
               name: 'Huevos rotos con chorizo y patatas fritas',
-              price: formatToEuros(7.5),
+              portions: [{name: 'Única', price: '5,00 €'}],
             },
           ],
         },
@@ -54,12 +54,12 @@ describe('MenuListComponentTest', () => {
             {
               id: 21,
               name: 'Torrijas',
-              price: formatToEuros(7.0),
+              portions: [{name: 'Única', price: '5,00 €'}],
             },
             {
               id: 22,
               name: 'Coulant de chocolate negro con helado de vainilla',
-              price: formatToEuros(8.5),
+              portions: [{name: 'Única', price: '5,00 €'}],
             },
           ],
         },
@@ -69,17 +69,17 @@ describe('MenuListComponentTest', () => {
             {
               id: 24,
               name: 'Refrescos',
-              price: formatToEuros(2.5),
+              portions: [{name: 'Única', price: '5,00 €'}],
             },
             {
               id: 25,
               name: 'Cerveza (caña)',
-              price: formatToEuros(2),
+              portions: [{name: 'Única', price: '5,00 €'}],
             },
             {
               id: 26,
               name: 'Cerveza (Jarra)',
-              price: formatToEuros(3.5),
+              portions: [{name: 'Única', price: '5,00 €'}],
             },
           ],
         },
@@ -90,7 +90,7 @@ describe('MenuListComponentTest', () => {
     render(<MenuListComponent {...props} />);
     const categories = props.categories
       .map((c) => c.name)
-      .map((name) => screen.getByLabelText(name));
+      .map((name) => screen.getByText(name));
     const products = new Array<string>();
     props.categories.map((c) => c.products.map((d) => products.push(`${d.name}`)));
     const productItems = products.map((d) => screen.getByText(d));

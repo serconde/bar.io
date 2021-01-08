@@ -1,14 +1,6 @@
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  List,
-  ListItem,
-  Typography,
-} from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@material-ui/core';
 import React from 'react';
 import { MenuCategory } from '../menu.vm';
-import * as classes from './menu-list.styles';
 import { SubmenuCategoryComponent } from './submenu-category.component';
 
 interface MenuListProps {
@@ -32,13 +24,11 @@ export const MenuListComponent: React.FunctionComponent<MenuListProps> = (props)
             square
             expanded={expanded === `category${index}`}
             onChange={handleChange(`category${index}`)}>
-            <AccordionSummary
-              aria-controls={`category${index}-content`}
-              id={`category${index}-header`}>
+            <AccordionSummary aria-controls={`category${index}-content`}>
               <Typography>{category.name}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-              <SubmenuCategoryComponent products={category.products} />
+              <SubmenuCategoryComponent categoryIndex={index} products={category.products} />
             </AccordionDetails>
           </Accordion>
         ))}

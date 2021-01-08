@@ -1,15 +1,19 @@
 import { css } from 'emotion';
 
-export const category = css`
+export const container = css`
   width: 100%;
 `;
 
-export const name = css`
+export const product = css`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const portion = css`
   width: 75%;
 `;
 
 export const price = css`
-  width: 25%;
   text-align: right;
   font-weight: bold;
 `;
